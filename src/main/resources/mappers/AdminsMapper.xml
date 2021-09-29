@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuerhuixue.dao.AdminsMapper">
+  <resultMap id="BaseResultMap" type="com.yuerhuixue.pojo.Admins">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="admin_id" jdbcType="INTEGER" property="adminId" />
+    <result column="admin_name" jdbcType="VARCHAR" property="adminName" />
+    <result column="admin_pwd" jdbcType="VARCHAR" property="adminPwd" />
+    <result column="admin_nickname" jdbcType="VARCHAR" property="adminNickname" />
+    <result column="admin_img" jdbcType="VARCHAR" property="adminImg" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+</mapper>

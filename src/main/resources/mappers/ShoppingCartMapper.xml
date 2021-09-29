@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuerhuixue.dao.ShoppingCartMapper">
+  <resultMap id="BaseResultMap" type="com.yuerhuixue.pojo.ShoppingCart">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="cart_id" jdbcType="INTEGER" property="cartId" />
+    <result column="ins_id" jdbcType="INTEGER" property="insId" />
+    <result column="ins_name" jdbcType="VARCHAR" property="insName" />
+    <result column="ins_img" jdbcType="VARCHAR" property="insImg" />
+    <result column="cart_number" jdbcType="INTEGER" property="cartNumber" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  
+  <resultMap id="shoppingCartVOMap" type="com.yuerhuixue.pojo.ShoppingCartVO">
+    <id column="cart_id_1" jdbcType="INTEGER" property="cartId" />
+    <result column="cart_number_1" jdbcType="INTEGER" property="cartNumber" />
+    <result column="user_id_1" jdbcType="TIMESTAMP" property="userId" />
+    <result column="create_time_1" jdbcType="TIMESTAMP" property="createTime" />
+    <association property="ins" javaType="com.yuerhuixue.pojo.Ins">
+        <id column="ins_id_2" jdbcType="INTEGER" property="insId" />
+        <result column="ins_name_2" jdbcType="VARCHAR" property="insName" />
+        <result column="type_id_2" jdbcType="INTEGER" property="typeId" />
+        <result column="ins_price_2" jdbcType="DECIMAL" property="insPrice" />
+        <result column="ins_stock_2" jdbcType="INTEGER" property="insStock" />
+        <result column="ins_img_2" jdbcType="VARCHAR" property="insImg" />
+        <result column="ins_brand_2" jdbcType="VARCHAR" property="insBrand" />
+        <result column="ins_desc_2" jdbcType="VARCHAR" property="insDesc" />
+        <result column="create_time_2" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="update_time_2" jdbcType="TIMESTAMP" property="updateTime" />
+    </association>
+  </resultMap>
+  
+  <select id="shoppingCartByUser" resultMap="shoppingCartVOMap">
+    select c1.cart_id as cart_id_1,
+           c1.cart_number as cart_number_1,
+           c1.user_id as user_id_1,
+           c1.create_time as create_time_1,
+           c2.ins_id as ins_id_2,
+           c2.ins_name as ins_name_2,
+           c2.type_id as type_id_2,
+           c2.ins_price as ins_price_2,
+           c2.ins_stock as ins_stock_2,
+           c2.ins_img as ins_img_2,
+           c2.ins_brand as ins_brand_2,
+           c2.ins_desc as ins_desc_2,
+           c2.create_time as create_time_2,
+           c2.update_time as update_time_2
+    from shopping_cart t1 left join ins t2
+                          on t1.ins_id = t2.ins_id
+    where t1.user_id = #{userId}
+  </select>
+</mapper>

@@ -1,0 +1,20 @@
+# 配置数据源
+spring:
+  datasource:
+    druid:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/yuerhuixue_springboot?characterEncoding=utf-8&useSSL=false
+      username: root
+      password: 123456
+      initial-size: 1
+      min-idle: 1
+      max-active: 20
+
+# 配置映射文件路径、实体类包名
+mybatis:
+  mapper-locations: classpath:mappers/*Mapper.xml
+  type-aliases-package: com.yuerhuixue.pojo
+
+#修改端口号
+server:
+  port: 8181

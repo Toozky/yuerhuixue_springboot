@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuerhuixue.dao.OrderDetailMapper">
+  <resultMap id="BaseResultMap" type="com.yuerhuixue.pojo.OrderDetail">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="detail_id" jdbcType="INTEGER" property="detailId" />
+    <result column="order_id" jdbcType="INTEGER" property="orderId" />
+    <result column="ins_id" jdbcType="VARCHAR" property="insId" />
+    <result column="ins_name" jdbcType="VARCHAR" property="insName" />
+    <result column="ins_img" jdbcType="VARCHAR" property="insImg" />
+    <result column="ins_price" jdbcType="DECIMAL" property="insPrice" />
+    <result column="buy_number" jdbcType="INTEGER" property="buyNumber" />
+    <result column="total_amount" jdbcType="DECIMAL" property="totalAmount" />
+  </resultMap>
+</mapper>

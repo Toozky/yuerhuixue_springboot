@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuerhuixue.dao.InsMapper">
+  <resultMap id="BaseResultMap" type="com.yuerhuixue.pojo.Ins">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="ins_id" jdbcType="INTEGER" property="insId" />
+    <result column="ins_name" jdbcType="VARCHAR" property="insName" />
+    <result column="type_id" jdbcType="INTEGER" property="typeId" />
+    <result column="ins_price" jdbcType="DECIMAL" property="insPrice" />
+    <result column="ins_stock" jdbcType="INTEGER" property="insStock" />
+    <result column="ins_img" jdbcType="VARCHAR" property="insImg" />
+    <result column="ins_brand" jdbcType="VARCHAR" property="insBrand" />
+    <result column="ins_desc" jdbcType="VARCHAR" property="insDesc" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  
+  <resultMap id="insVOMap" type="com.yuerhuixue.pojo.InsVO">
+    <id column="ins_id_1" jdbcType="INTEGER" property="insId" />
+    <result column="ins_name_1" jdbcType="VARCHAR" property="insName" />
+    <result column="ins_price_1" jdbcType="DECIMAL" property="insPrice" />
+    <result column="ins_stock_1" jdbcType="INTEGER" property="insStock" />
+    <result column="ins_img_1" jdbcType="VARCHAR" property="insImg" />
+    <result column="ins_brand_1" jdbcType="VARCHAR" property="insBrand" />
+    <result column="ins_desc_1" jdbcType="VARCHAR" property="insDesc" />
+    <result column="create_time_1" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time_1" jdbcType="TIMESTAMP" property="updateTime" />
+    <association property="insType" javaType="com.yuerhuixue.pojo.InsType">
+      <id column="type_id_2" jdbcType="INTEGER" property="typeId" />
+      <result column="type_name_2" jdbcType="VARCHAR" property="typeName" />
+      <result column="type_img_2" jdbcType="VARCHAR" property="typeImg" />
+      <result column="type_desc_2" jdbcType="VARCHAR" property="typeDesc" />
+      <result column="type_level_2" jdbcType="VARCHAR" property="typeLevel" />
+      <result column="create_time_2" jdbcType="TIMESTAMP" property="createTime" />
+      <result column="update_time_2" jdbcType="TIMESTAMP" property="updateTime" />
+    </association>
+  </resultMap>
+
+  <select id="findInsVOById" resultMap="insVOMap">
+    select c1.ins_id as ins_id_1,
+           c1.ins_name as ins_name_1,
+           c1.ins_price as ins_price_1,
+           c1.ins_stock as ins_stock_1,
+           c1.ins_img as ins_img_1,
+           c1.ins_brand as ins_brand_1,
+           c1.ins_desc as ins_desc_1,
+           c1.create_time as create_time_1,
+           c1.update_time as update_time_1,
+           c2.type_id as type_id_2,
+           c2.type_name as type_name_2,
+           c2.type_img as type_img_2,
+           c2.type_desc as type_desc_2,
+           c2.type_level as type_level_2,
+           c2.create_time as create_time_2,
+           c2.update_time as update_time_2
+    from ins t1 left join insType t2 on t1.type_id = t2.type_id
+    where t1.ins_id = {#id}
+  </select>
+
+</mapper>
