@@ -22,7 +22,7 @@ public class ShoppingCartController {
 
     @ApiOperation("购物车列表接口")
     @ApiImplicitParams({
-            @ApiImplicitParam(dataType = "integer", name = "userId", value = "用户id", required = true)
+            @ApiImplicitParam(dataType = "int", name = "userId", value = "用户id", required = true)
     })
     @GetMapping("/list")
     public ResultVO shoppingCartList(@RequestParam("userId") Integer userId){
@@ -37,8 +37,8 @@ public class ShoppingCartController {
 
     @ApiOperation("修改购物车接口")
     @ApiImplicitParams({
-            @ApiImplicitParam(dataType = "integer", name = "cartId", value = "购物车id", required = true),
-            @ApiImplicitParam(dataType = "integer", name = "cartNumber", value = "乐器数量", required = true)
+            @ApiImplicitParam(dataType = "int", name = "cartId", value = "购物车id", required = true),
+            @ApiImplicitParam(dataType = "int", name = "cartNumber", value = "乐器数量", required = true)
     })
     @PutMapping("modify")
     public ResultVO modifyShoppingCart(@RequestParam("cartId") Integer cartId,
@@ -48,7 +48,7 @@ public class ShoppingCartController {
 
     @ApiOperation("删除购物车接口")
     @ApiImplicitParams({
-            @ApiImplicitParam(dataType = "integer", name = "cartId", value = "购物车id", required = true)
+            @ApiImplicitParam(dataType = "int", name = "cartId", value = "购物车id", required = true)
     })
     @DeleteMapping("delete")
     public ResultVO deleteShoppingCart(@RequestParam("cartId") Integer cartId){

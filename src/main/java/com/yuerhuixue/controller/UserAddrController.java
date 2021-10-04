@@ -34,7 +34,7 @@ public class UserAddrController {
 
     @ApiOperation("删除收货地址接口")
     @ApiImplicitParams({
-            @ApiImplicitParam(dataType = "integer", name = "userAddrId", value = "收货地址id", required = true)
+            @ApiImplicitParam(dataType = "int", name = "userAddrId", value = "收货地址id", required = true)
     })
     @DeleteMapping("/delete")
     public ResultVO deleteAddr(@RequestParam("userAddrId") Integer userAddrId){
@@ -43,7 +43,7 @@ public class UserAddrController {
 
     @ApiOperation("收货地址列表接口")
     @ApiImplicitParams({
-            @ApiImplicitParam(dataType = "integer", name = "userId", value = "用户id", required = true)
+            @ApiImplicitParam(dataType = "int", name = "userId", value = "用户id", required = true)
     })
     @GetMapping("/list")
     public ResultVO addrList(@RequestParam("userId") Integer userId){

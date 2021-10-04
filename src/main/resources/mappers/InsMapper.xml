@@ -56,7 +56,7 @@
            c2.create_time as create_time_2,
            c2.update_time as update_time_2
     from ins t1 left join insType t2 on t1.type_id = t2.type_id
-    where t1.ins_id = {#id}
+    where t1.ins_id = #{insId}
   </select>
 
 </mapper>

@@ -54,7 +54,7 @@ public class VideoController {
 
     @ApiOperation("删除视频接口")
     @ApiImplicitParams({
-            @ApiImplicitParam(dataType = "integer", name = "videoId", value = "视频id", required = true)
+            @ApiImplicitParam(dataType = "int", name = "videoId", value = "视频id", required = true)
     })
     @DeleteMapping("/delete")
     public ResultVO deleteVideo(@RequestParam("videoId") Integer videoId){

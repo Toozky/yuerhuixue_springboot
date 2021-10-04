@@ -48,7 +48,7 @@ public class InsController {
 
     @ApiOperation("删除乐器接口")
     @ApiImplicitParams({
-            @ApiImplicitParam(dataType = "integer", name = "insId", value = "乐器id", required = true)
+            @ApiImplicitParam(dataType = "int", name = "insId", value = "乐器id", required = true)
     })
     @DeleteMapping("/delete")
     public ResultVO deleteIns(@RequestParam("insId") Integer insId){
