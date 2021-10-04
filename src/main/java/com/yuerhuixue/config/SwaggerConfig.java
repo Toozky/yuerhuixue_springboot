@@ -31,14 +31,12 @@ public class SwaggerConfig {
         ApiInfo apiInfo = apiInfoBuilder.build();
 
         //指定文档封面信息
-        Docket docket = new Docket(DocumentationType.SWAGGER_2)
+        return new Docket(DocumentationType.SWAGGER_2)
                         .apiInfo(apiInfo)
                         .select()
                         .apis(RequestHandlerSelectors.basePackage("com.yuerhuixue.controller"))
                         .paths(PathSelectors.any())
                         .build();
-
-        return docket;
 
     }
 
