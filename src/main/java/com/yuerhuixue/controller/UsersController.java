@@ -69,9 +69,9 @@ public class UsersController {
             @ApiImplicitParam(dataType = "string", name = "newPwd", value = "用户修改后密码", required = true)
     })
     @PutMapping("/modifyPwd")
-    public ResultVO regist(@RequestParam("id") Integer userId,
-                           @RequestParam("pwd") String pwd,
-                           @RequestParam("newPwd") String newPwd){
+    public ResultVO modifyPwd(@RequestParam("id") Integer userId,
+                              @RequestParam("pwd") String pwd,
+                              @RequestParam("newPwd") String newPwd){
         return usersService.modifyPwd(userId,pwd,newPwd);
 
     }
