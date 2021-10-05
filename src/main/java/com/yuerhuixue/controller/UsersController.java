@@ -70,8 +70,8 @@ public class UsersController {
     })
     @PutMapping("/modifyPwd")
     public ResultVO modifyPwd(@RequestParam("id") Integer userId,
-                           @RequestParam("pwd") String pwd,
-                           @RequestParam("newPwd") String newPwd){
+                              @RequestParam("pwd") String pwd,
+                              @RequestParam("newPwd") String newPwd){
         return usersService.modifyPwd(userId,pwd,newPwd);
 
     }
