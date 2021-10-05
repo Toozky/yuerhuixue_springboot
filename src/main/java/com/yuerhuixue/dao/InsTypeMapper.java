@@ -9,4 +9,8 @@ import java.util.List;
 
 @Repository
 public interface InsTypeMapper extends GeneralDao<InsType> {
+
+    //前五条乐器类型
+    List<InsType> insTypeListFive();
+
 }

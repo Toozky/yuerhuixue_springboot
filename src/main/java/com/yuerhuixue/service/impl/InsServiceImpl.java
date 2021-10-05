@@ -86,9 +86,7 @@ public class InsServiceImpl implements InsService {
      * @return 执行结果
      */
     @Override
-    public ResultVO InsList() {
-
-        //查询所有
+    public ResultVO insList() {
         List<Ins> insList = insMapper.selectAll();
         return new ResultVO(StatusCode.OK, "查询完成！", insList);
     }
@@ -99,8 +97,9 @@ public class InsServiceImpl implements InsService {
      * @return 乐器对象
      */
     @Override
-    public Ins findInsById(Integer insId) {
-        return insMapper.selectByPrimaryKey(insId);
+    public ResultVO findInsById(Integer insId) {
+        Ins ins = insMapper.selectByPrimaryKey(insId);
+        return new ResultVO(StatusCode.OK, "查询完成！", ins);
     }
 
     /**
@@ -109,7 +108,19 @@ public class InsServiceImpl implements InsService {
      * @return 乐器对象
      */
     @Override
-    public InsVO findInsVOById(Integer insId) {
-        return insMapper.findInsVOById(insId);
+    public ResultVO findInsVOById(Integer insId) {
+        InsVO insVO = insMapper.findInsVOById(insId);
+        return new ResultVO(StatusCode.OK, "查询完成！", insVO);
     }
+
+    /**
+     * 查询前五条数据
+     * @return 执行结果
+     */
+    @Override
+    public ResultVO insListFive() {
+        List<Ins> insListFive = insMapper.insListFive();
+        return new ResultVO(StatusCode.OK, "查询完成！", insListFive);
+    }
+
 }

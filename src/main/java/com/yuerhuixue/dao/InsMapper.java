@@ -13,4 +13,7 @@ public interface InsMapper extends GeneralDao<Ins> {
     //根据id查询乐器
     InsVO findInsVOById(Integer insId);
 
+    //前五条乐器
+    List<Ins> insListFive();
+
 }

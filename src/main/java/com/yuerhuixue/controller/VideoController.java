@@ -35,7 +35,7 @@ public class VideoController {
     public ResultVO modifyVideo(@RequestBody Video video){
 
         //获取当前id信息
-        Video videoBefore = videoService.findVideoById(video.getVideoId());
+        Video videoBefore = (Video) videoService.findVideoById(video.getVideoId()).getData();
 
         //修改图片后，删除之前的图片
         if (video.getVideoImg() != null){
@@ -60,7 +60,7 @@ public class VideoController {
     public ResultVO deleteVideo(@RequestParam("videoId") Integer videoId){
 
         //获取原图片、视频路径
-        Video videoBefore = videoService.findVideoById(videoId);
+        Video videoBefore = (Video) videoService.findVideoById(videoId).getData();
         String imgBefore = videoBefore.getVideoImg();
         String movieBefore = videoBefore.getVideoUrl();
 

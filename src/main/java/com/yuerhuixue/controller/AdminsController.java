@@ -51,7 +51,7 @@ public class AdminsController {
     public ResultVO modify(@RequestBody Admins admin){
         
         //获取当前id信息
-        Admins adminBefore = adminsService.findAdminById(admin.getAdminId());
+        Admins adminBefore = (Admins) adminsService.findAdminById(admin.getAdminId()).getData();
 
         //修改图片后，删除之前的图片
         if (admin.getAdminImg() != null){

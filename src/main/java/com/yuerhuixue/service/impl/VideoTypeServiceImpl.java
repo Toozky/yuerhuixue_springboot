@@ -104,8 +104,9 @@ public class VideoTypeServiceImpl implements VideoTypeService {
      * @return 视频类型对象
      */
     @Override
-    public VideoType findVideoTypeById(Integer videoTypeId) {
-        return videoTypeMapper.selectByPrimaryKey(videoTypeId);
+    public ResultVO findVideoTypeById(Integer videoTypeId) {
+        VideoType videoType = videoTypeMapper.selectByPrimaryKey(videoTypeId);
+        return new ResultVO(StatusCode.OK, "查询完成！", videoType);
     }
 
     /**

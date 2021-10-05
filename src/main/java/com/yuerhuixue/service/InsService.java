@@ -16,12 +16,15 @@ public interface InsService {
     ResultVO deleteIns(Integer insId);
 
     //查询所有乐器
-    ResultVO InsList();
+    ResultVO insList();
 
     //根据id查询乐器
-    Ins findInsById(Integer insId);
+    ResultVO findInsById(Integer insId);
 
     //根据id查询乐器
-    InsVO findInsVOById(Integer insId);
+    ResultVO findInsVOById(Integer insId);
+
+    //前五条乐器
+    ResultVO insListFive();
 
 }

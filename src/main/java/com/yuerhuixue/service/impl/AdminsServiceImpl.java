@@ -110,8 +110,9 @@ public class AdminsServiceImpl implements AdminsService {
      * @return 管理员对象
      */
     @Override
-    public Admins findAdminById(Integer adminId) {
-        return adminsMapper.selectByPrimaryKey(adminId);
+    public ResultVO findAdminById(Integer adminId) {
+        Admins admin = adminsMapper.selectByPrimaryKey(adminId);
+        return new ResultVO(StatusCode.OK, "查询完成！", admin);
     }
 
     /**

@@ -15,12 +15,15 @@ public interface InsTypeService {
     ResultVO deleteInsType(Integer insTypeId);
 
     //查询所有乐器类型
-    ResultVO InsTypeList();
+    ResultVO insTypeList();
 
     //根据id查询乐器类型
-    InsType findInsTypeById(Integer insTypeId);
+    ResultVO findInsTypeById(Integer insTypeId);
 
     //查询当前类型下所有乐器
     ResultVO insByType(Integer insTypeId);
+
+    //前五条乐器类型
+    ResultVO insTypeListFive();
     
 }

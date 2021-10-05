@@ -35,7 +35,7 @@ public class InsController {
     public ResultVO modifyIns(@RequestBody Ins ins){
 
         //获取当前id信息
-        Ins insBefore = insService.findInsById(ins.getInsId());
+        Ins insBefore = (Ins) insService.findInsById(ins.getInsId()).getData();
 
         //修改图片后，删除之前的图片
         if (ins.getInsImg() != null){
@@ -54,7 +54,7 @@ public class InsController {
     public ResultVO deleteIns(@RequestParam("insId") Integer insId){
 
         //获取原图片路径
-        Ins insBefore = insService.findInsById(insId);
+        Ins insBefore = (Ins) insService.findInsById(insId).getData();
         String imgBefore = insBefore.getInsImg();
 
         //删除图片
@@ -72,7 +72,13 @@ public class InsController {
     @ApiOperation("查询乐器列表接口")
     @GetMapping("/list")
     public ResultVO insList(){
-        return insService.InsList();
+        return insService.insList();
+    }
+
+    @ApiOperation("查询前五条乐器列表接口")
+    @GetMapping("/fiveList")
+    public ResultVO insListFive(){
+        return insService.insListFive();
     }
     
 }

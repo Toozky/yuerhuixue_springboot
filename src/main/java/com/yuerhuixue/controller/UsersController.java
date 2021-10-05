@@ -51,7 +51,7 @@ public class UsersController {
     public ResultVO modify(@RequestBody Users user) {
 
         //获取当前id信息
-        Users userBefore = usersService.findUserById(user.getUserId());
+        Users userBefore = (Users) usersService.findUserById(user.getUserId()).getData();
 
         //修改图片后，删除之前的图片
         if (user.getUserImg() != null){

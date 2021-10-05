@@ -104,8 +104,9 @@ public class VideoServiceImpl implements VideoService {
      * @return 视频对象
      */
     @Override
-    public Video findVideoById(Integer videoId) {
-        return videoMapper.selectByPrimaryKey(videoId);
+    public ResultVO findVideoById(Integer videoId) {
+        Video video = videoMapper.selectByPrimaryKey(videoId);
+        return new ResultVO(StatusCode.OK, "查询完成！", video);
     }
 
     /**
@@ -114,7 +115,8 @@ public class VideoServiceImpl implements VideoService {
      * @return 视频对象
      */
     @Override
-    public VideoVO findVideoVOById(Integer videoId) {
-        return videoMapper.findVideoVOById(videoId);
+    public ResultVO findVideoVOById(Integer videoId) {
+        VideoVO videoVO = videoMapper.findVideoVOById(videoId);
+        return new ResultVO(StatusCode.OK, "查询完成！", videoVO);
     }
 }

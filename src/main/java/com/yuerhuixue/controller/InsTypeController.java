@@ -35,7 +35,7 @@ public class InsTypeController {
     public ResultVO modifyInsType(@RequestBody InsType insType){
         
         //获取当前id信息
-        InsType insTypeBefore = insTypeService.findInsTypeById(insType.getTypeId());
+        InsType insTypeBefore = (InsType) insTypeService.findInsTypeById(insType.getTypeId()).getData();
 
         //修改图片后，删除之前的图片
         if (insType.getTypeImg() != null){
@@ -54,7 +54,7 @@ public class InsTypeController {
     public ResultVO deleteInsType(@RequestParam("insTypeId") Integer insTypeId){
 
         //获取原图片路径
-        InsType insTypeBefore = insTypeService.findInsTypeById(insTypeId);
+        InsType insTypeBefore = (InsType) insTypeService.findInsTypeById(insTypeId).getData();
         String imgBefore = insTypeBefore.getTypeImg();
 
         //删除图片
@@ -72,7 +72,22 @@ public class InsTypeController {
     @ApiOperation("查询乐器类型列表接口")
     @GetMapping("/list")
     public ResultVO insTypeList(){
-        return insTypeService.InsTypeList();
+        return insTypeService.insTypeList();
+    }
+
+    @ApiOperation("查询前五条乐器列表接口")
+    @GetMapping("/fiveList")
+    public ResultVO insTypeListFive(){
+        return insTypeService.insTypeListFive();
+    }
+
+    @ApiOperation("查询当前类型下所有乐器")
+    @ApiImplicitParams({
+            @ApiImplicitParam(dataType = "int", name = "insTypeId", value = "乐器类型id", required = true)
+    })
+    @GetMapping("/insByType")
+    public ResultVO insByType(Integer insTypeId){
+        return insTypeService.insByType(insTypeId);
     }
 
 }

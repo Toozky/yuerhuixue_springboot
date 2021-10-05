@@ -92,9 +92,7 @@ public class InsTypeServiceImpl implements InsTypeService {
      * @return 执行结果
      */
     @Override
-    public ResultVO InsTypeList() {
-
-        //查询所有
+    public ResultVO insTypeList() {
         List<InsType> insTypeList = insTypeMapper.selectAll();
         return new ResultVO(StatusCode.OK, "查询完成！", insTypeList);
     }
@@ -105,8 +103,9 @@ public class InsTypeServiceImpl implements InsTypeService {
      * @return 乐器类型对象
      */
     @Override
-    public InsType findInsTypeById(Integer insTypeId) {
-        return insTypeMapper.selectByPrimaryKey(insTypeId);
+    public ResultVO findInsTypeById(Integer insTypeId) {
+        InsType insType = insTypeMapper.selectByPrimaryKey(insTypeId);
+        return new ResultVO(StatusCode.OK, "查询完成！", insType);
     }
 
     /**
@@ -129,4 +128,15 @@ public class InsTypeServiceImpl implements InsTypeService {
             return new ResultVO(StatusCode.OK, "查询成功！", insList);
         }
     }
+
+    /**
+     * 查询前五条数据
+     * @return 执行结果
+     */
+    @Override
+    public ResultVO insTypeListFive() {
+        List<InsType> insTypeListFive = insTypeMapper.insTypeListFive();
+        return new ResultVO(StatusCode.OK, "查询完成！", insTypeListFive);
+    }
+
 }

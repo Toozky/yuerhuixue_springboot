@@ -19,9 +19,9 @@ public interface VideoService {
     ResultVO VideoList();
 
     //根据id查询视频
-    Video findVideoById(Integer videoId);
+    ResultVO findVideoById(Integer videoId);
 
     //根据id查询视频
-    VideoVO findVideoVOById(Integer videoId);
+    ResultVO findVideoVOById(Integer videoId);
     
 }

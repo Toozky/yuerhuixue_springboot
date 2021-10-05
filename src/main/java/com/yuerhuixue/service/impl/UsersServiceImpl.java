@@ -129,8 +129,9 @@ public class UsersServiceImpl implements UsersService {
      * @return 用户对象
      */
     @Override
-    public Users findUserById(Integer userId) {
-        return usersMapper.selectByPrimaryKey(userId);
+    public ResultVO findUserById(Integer userId) {
+        Users user = usersMapper.selectByPrimaryKey(userId);
+        return new ResultVO(StatusCode.OK, "查询完成！", user);
     }
 
     /**

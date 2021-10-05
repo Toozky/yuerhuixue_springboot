@@ -59,4 +59,10 @@
     where t1.ins_id = #{insId}
   </select>
 
+  <select id="insListFive" resultType="com.yuerhuixue.pojo.Ins">
+      select *
+      from ins
+      limit 5
+  </select>
+
 </mapper>

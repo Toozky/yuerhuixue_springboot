@@ -37,7 +37,7 @@ public class VideoTypeController {
     public ResultVO modifyVideoType(@RequestBody VideoType videoType){
 
         //获取当前id信息
-        VideoType videoTypeBefore = videoTypeService.findVideoTypeById(videoType.getTypeId());
+        VideoType videoTypeBefore = (VideoType) videoTypeService.findVideoTypeById(videoType.getTypeId()).getData();
 
         //修改图片后，删除之前的图片
         if (videoType.getTypeImg() != null){
@@ -56,7 +56,7 @@ public class VideoTypeController {
     public ResultVO deleteVideoType(@RequestParam("videoTypeId") Integer videoTypeId){
 
         //获取原图片路径
-        VideoType videoTypeBefore = videoTypeService.findVideoTypeById(videoTypeId);
+        VideoType videoTypeBefore = (VideoType) videoTypeService.findVideoTypeById(videoTypeId).getData();
         String imgBefore = videoTypeBefore.getTypeImg();
 
         //删除图片

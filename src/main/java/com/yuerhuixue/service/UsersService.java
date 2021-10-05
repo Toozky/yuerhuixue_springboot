@@ -15,7 +15,7 @@ public interface UsersService {
     ResultVO userModify(Users user);
 
     //根据id查询用户
-    Users findUserById(Integer userId);
+    ResultVO findUserById(Integer userId);
 
     //修改密码
     ResultVO modifyPwd(Integer userId, String pwd, String NewPwd);

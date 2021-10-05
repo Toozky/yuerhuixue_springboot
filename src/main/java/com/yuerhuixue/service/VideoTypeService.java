@@ -18,7 +18,7 @@ public interface VideoTypeService {
     ResultVO VideoTypeList();
 
     //根据id查询视频类型
-    VideoType findVideoTypeById(Integer videoTypeId);
+    ResultVO findVideoTypeById(Integer videoTypeId);
 
     //查询当前类型下所有视频
     ResultVO videoByType(Integer videoTypeId);
