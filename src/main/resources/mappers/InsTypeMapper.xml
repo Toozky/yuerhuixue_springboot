@@ -14,7 +14,7 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
 
-  <select id="insTypeListFive" resultType="com.yuerhuixue.pojo.InsType">
+  <select id="insTypeListFive" resultMap="BaseResultMap">
     select *
     from ins_type
     limit 5

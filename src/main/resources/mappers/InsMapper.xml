@@ -59,7 +59,7 @@
     where t1.ins_id = #{insId}
   </select>
 
-  <select id="insListFive" resultType="com.yuerhuixue.pojo.Ins">
+  <select id="insListFive" resultMap="BaseResultMap">
       select *
       from ins
       limit 5
