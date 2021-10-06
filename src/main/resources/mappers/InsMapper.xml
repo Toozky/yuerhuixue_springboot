@@ -39,23 +39,23 @@
   </resultMap>
 
   <select id="findInsVOById" resultMap="insVOMap">
-    select c1.ins_id as ins_id_1,
-           c1.ins_name as ins_name_1,
-           c1.ins_price as ins_price_1,
-           c1.ins_stock as ins_stock_1,
-           c1.ins_img as ins_img_1,
-           c1.ins_brand as ins_brand_1,
-           c1.ins_desc as ins_desc_1,
-           c1.create_time as create_time_1,
-           c1.update_time as update_time_1,
-           c2.type_id as type_id_2,
-           c2.type_name as type_name_2,
-           c2.type_img as type_img_2,
-           c2.type_desc as type_desc_2,
-           c2.type_level as type_level_2,
-           c2.create_time as create_time_2,
-           c2.update_time as update_time_2
-    from ins t1 left join insType t2 on t1.type_id = t2.type_id
+    select t1.ins_id as ins_id_1,
+           t1.ins_name as ins_name_1,
+           t1.ins_price as ins_price_1,
+           t1.ins_stock as ins_stock_1,
+           t1.ins_img as ins_img_1,
+           t1.ins_brand as ins_brand_1,
+           t1.ins_desc as ins_desc_1,
+           t1.create_time as create_time_1,
+           t1.update_time as update_time_1,
+           t2.type_id as type_id_2,
+           t2.type_name as type_name_2,
+           t2.type_img as type_img_2,
+           t2.type_desc as type_desc_2,
+           t2.type_level as type_level_2,
+           t2.create_time as create_time_2,
+           t2.update_time as update_time_2
+    from ins t1 left join ins_type t2 on t1.type_id = t2.type_id
     where t1.ins_id = #{insId}
   </select>
 

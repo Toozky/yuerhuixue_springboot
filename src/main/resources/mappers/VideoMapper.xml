@@ -37,21 +37,21 @@
   </resultMap>
 
   <select id="findVideoVOById" resultMap="videoVOMap">
-    select video_id as video_id_1,
-           video_title as video_title_1,
-           video_img as video_img_1,
-           video_desc as video_desc_1,
-           user_id as user_id_1,
-           video_url as video_url_1,
-           create_time as create_time_1,
-           update_time as update_time_1,
-           type_id as type_id_2,
-           type_name as type_name_2,
-           type_img as type_img_2,
-           type_desc as type_desc_2,
-           type_level as type_level_2,
-           create_time as create_time_2,
-           update_time as update_time_2
+    select t1.video_id as video_id_1,
+           t1.video_title as video_title_1,
+           t1.video_img as video_img_1,
+           t1.video_desc as video_desc_1,
+           t1.user_id as user_id_1,
+           t1.video_url as video_url_1,
+           t1.create_time as create_time_1,
+           t1.update_time as update_time_1,
+           t2.type_id as type_id_2,
+           t2.type_name as type_name_2,
+           t2.type_img as type_img_2,
+           t2.type_desc as type_desc_2,
+           t2.type_level as type_level_2,
+           t2.create_time as create_time_2,
+           t2.update_time as update_time_2
     from video t1 left join video_type t2 on t1.type_id = t2.type_id
     where t1.video_id = #{videoId}
   </select>
