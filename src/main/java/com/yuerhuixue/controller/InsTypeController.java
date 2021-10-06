@@ -86,7 +86,7 @@ public class InsTypeController {
             @ApiImplicitParam(dataType = "int", name = "insTypeId", value = "乐器类型id", required = true)
     })
     @GetMapping("/insByType")
-    public ResultVO insByType(Integer insTypeId){
+    public ResultVO insByType(@RequestParam("insTypeId")Integer insTypeId){
         return insTypeService.insByType(insTypeId);
     }
 
