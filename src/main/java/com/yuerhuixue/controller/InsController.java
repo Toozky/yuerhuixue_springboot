@@ -80,5 +80,14 @@ public class InsController {
     public ResultVO insListFive(){
         return insService.insListFive();
     }
+
+    @ApiOperation("查询选中乐器信息接口")
+    @ApiImplicitParams({
+            @ApiImplicitParam(dataType = "int", name = "insId", value = "乐器id", required = true)
+    })
+    @GetMapping("/insInfo")
+    public ResultVO insInfo(Integer insId){
+        return insService.findInsVOById(insId);
+    }
     
 }
