@@ -29,7 +29,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
         //查询当前用户购物车
         List<ShoppingCartVO> shoppingCartList = shoppingCartMapper.shoppingCartByUser(userId);
-        return new ResultVO(StatusCode.OK, "查询成功！", shoppingCartList);
+        return new ResultVO(StatusCode.OK, "查询完成！", shoppingCartList);
     }
 
     /**

@@ -122,11 +122,7 @@ public class InsTypeServiceImpl implements InsTypeService {
         criteria.andEqualTo("typeId", insTypeId);
         List<Ins> insList = insMapper.selectByExample(example);
 
-        if (insList.size() == 0){
-            return new ResultVO(StatusCode.NO,"该分类下无乐器！",null);
-        }else {
-            return new ResultVO(StatusCode.OK, "查询成功！", insList);
-        }
+        return new ResultVO(StatusCode.OK, "查询完成！", insList);
     }
 
     /**

@@ -123,11 +123,7 @@ public class VideoTypeServiceImpl implements VideoTypeService {
         criteria.andEqualTo("typeId", videoTypeId);
         List<Video> videoList = videoMapper.selectByExample(example);
 
-        if (videoList.size() == 0){
-            return new ResultVO(StatusCode.NO,"该分类下无视频！",null);
-        }else {
-            return new ResultVO(StatusCode.OK, "查询成功！", videoList);
-        }
+        return new ResultVO(StatusCode.OK, "查询完成！", videoList);
 
     }
 }
