@@ -21,7 +21,7 @@ public interface InsTypeService {
     ResultVO findInsTypeById(Integer insTypeId);
 
     //查询当前类型下所有乐器
-    ResultVO insByType(Integer insTypeId);
+    ResultVO insByType(Integer insTypeId, Integer pageNum, Integer pageSize);
 
     //前五条乐器类型
     ResultVO insTypeListFive();

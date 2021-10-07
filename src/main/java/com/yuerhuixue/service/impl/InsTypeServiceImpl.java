@@ -1,5 +1,8 @@
 package com.yuerhuixue.service.impl;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.yuerhuixue.dao.InsMapper;
 import com.yuerhuixue.dao.InsTypeMapper;
 import com.yuerhuixue.pojo.Ins;
@@ -114,15 +117,20 @@ public class InsTypeServiceImpl implements InsTypeService {
      * @return 执行结果
      */
     @Override
-    public ResultVO insByType(Integer insTypeId) {
-        
+    public ResultVO insByType(Integer insTypeId, Integer pageNum, Integer pageSize) {
+
+        //分页
+        PageHelper.startPage(pageNum, pageSize);
+
         //根据id查询当前类型视频
         Example example = new Example(Ins.class);
         Example.Criteria criteria = example.createCriteria();
         criteria.andEqualTo("typeId", insTypeId);
         List<Ins> insList = insMapper.selectByExample(example);
 
-        return new ResultVO(StatusCode.OK, "查询完成！", insList);
+        PageInfo<Ins> insPageInfo = new PageInfo<>(insList);
+
+        return new ResultVO(StatusCode.OK, "查询完成！", insPageInfo);
     }
 
     /**

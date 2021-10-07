@@ -70,8 +70,13 @@ public class InsController {
     }
 
     @ApiOperation("查询乐器列表接口")
+    @ApiImplicitParams({
+            @ApiImplicitParam(dataType = "int", name = "pageNum", value = "页码", required = true),
+            @ApiImplicitParam(dataType = "int", name = "pageSize", value = "当前页码数据条数", required = true)
+    })
     @GetMapping("/list")
-    public ResultVO insList(Integer pageNum, Integer pageSize){
+    public ResultVO insList(@RequestParam("pageNum") Integer pageNum,
+                            @RequestParam("pageSize")Integer pageSize){
         return insService.insList(pageNum, pageSize);
     }
 

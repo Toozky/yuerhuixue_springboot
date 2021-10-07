@@ -84,8 +84,13 @@ public class VideoController {
     }
 
     @ApiOperation("查询视频列表接口")
+    @ApiImplicitParams({
+            @ApiImplicitParam(dataType = "int", name = "pageNum", value = "页码", required = true),
+            @ApiImplicitParam(dataType = "int", name = "pageSize", value = "当前页码数据条数", required = true)
+    })
     @GetMapping("/list")
-    public ResultVO videoList(Integer pageNum, Integer pageSize){
+    public ResultVO videoList(@RequestParam("pageNum") Integer pageNum,
+                              @RequestParam("pageSize")Integer pageSize){
         return videoService.VideoList(pageNum, pageSize);
     }
     

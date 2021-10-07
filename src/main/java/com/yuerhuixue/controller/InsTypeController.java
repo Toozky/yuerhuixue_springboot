@@ -83,11 +83,15 @@ public class InsTypeController {
 
     @ApiOperation("查询当前类型下所有乐器")
     @ApiImplicitParams({
-            @ApiImplicitParam(dataType = "int", name = "insTypeId", value = "乐器类型id", required = true)
+            @ApiImplicitParam(dataType = "int", name = "insTypeId", value = "乐器类型id", required = true),
+            @ApiImplicitParam(dataType = "int", name = "pageNum", value = "页码", required = true),
+            @ApiImplicitParam(dataType = "int", name = "pageSize", value = "当前页码数据条数", required = true)
     })
     @GetMapping("/insByType")
-    public ResultVO insByType(@RequestParam("insTypeId")Integer insTypeId){
-        return insTypeService.insByType(insTypeId);
+    public ResultVO insByType(@RequestParam("insTypeId")Integer insTypeId,
+                              @RequestParam("pageNum") Integer pageNum,
+                              @RequestParam("pageSize")Integer pageSize){
+        return insTypeService.insByType(insTypeId, pageNum, pageSize);
     }
 
 }
