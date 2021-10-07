@@ -71,8 +71,8 @@ public class InsController {
 
     @ApiOperation("查询乐器列表接口")
     @GetMapping("/list")
-    public ResultVO insList(){
-        return insService.insList();
+    public ResultVO insList(Integer pageNum, Integer pageSize){
+        return insService.insList(pageNum, pageSize);
     }
 
     @ApiOperation("查询前五条乐器列表接口")

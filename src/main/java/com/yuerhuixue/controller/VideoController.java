@@ -85,8 +85,8 @@ public class VideoController {
 
     @ApiOperation("查询视频列表接口")
     @GetMapping("/list")
-    public ResultVO videoList(){
-        return videoService.VideoList();
+    public ResultVO videoList(Integer pageNum, Integer pageSize){
+        return videoService.VideoList(pageNum, pageSize);
     }
     
 }

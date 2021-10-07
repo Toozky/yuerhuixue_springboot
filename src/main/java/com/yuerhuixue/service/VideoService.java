@@ -16,7 +16,7 @@ public interface VideoService {
     ResultVO deleteVideo(Integer videoId);
 
     //查询所有视频
-    ResultVO VideoList();
+    ResultVO VideoList(Integer pageNum, Integer pageSize);
 
     //根据id查询视频
     ResultVO findVideoById(Integer videoId);

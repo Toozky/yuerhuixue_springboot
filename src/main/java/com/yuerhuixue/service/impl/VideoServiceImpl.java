@@ -1,5 +1,7 @@
 package com.yuerhuixue.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.yuerhuixue.dao.VideoMapper;
 import com.yuerhuixue.pojo.Video;
 import com.yuerhuixue.pojo.VideoVO;
@@ -91,11 +93,15 @@ public class VideoServiceImpl implements VideoService {
      * @return 执行结果
      */
     @Override
-    public ResultVO VideoList() {
+    public ResultVO VideoList(Integer pageNum, Integer pageSize) {
 
-        //查询所有
+        //分页
+        PageHelper.startPage(pageNum, pageSize);
+
+        //查询
         List<Video> videoList = videoMapper.selectAll();
-        return new ResultVO(StatusCode.OK, "查询完成！", videoList);
+        PageInfo<Video> videoPageInfo = new PageInfo<>(videoList);
+        return new ResultVO(StatusCode.OK, "查询完成！", videoPageInfo);
     }
 
     /**

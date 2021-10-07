@@ -16,7 +16,7 @@ public interface InsService {
     ResultVO deleteIns(Integer insId);
 
     //查询所有乐器
-    ResultVO insList();
+    ResultVO insList(Integer pageNum, Integer pageSize);
 
     //根据id查询乐器
     ResultVO findInsById(Integer insId);

@@ -1,5 +1,7 @@
 package com.yuerhuixue.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.yuerhuixue.dao.InsMapper;
 import com.yuerhuixue.pojo.Ins;
 import com.yuerhuixue.pojo.InsVO;
@@ -86,9 +88,15 @@ public class InsServiceImpl implements InsService {
      * @return 执行结果
      */
     @Override
-    public ResultVO insList() {
+    public ResultVO insList(Integer pageNum, Integer pageSize) {
+
+        //分页
+        PageHelper.startPage(pageNum, pageSize);
+
+        //查询
         List<Ins> insList = insMapper.selectAll();
-        return new ResultVO(StatusCode.OK, "查询完成！", insList);
+        PageInfo<Ins> insPageInfo = new PageInfo<>(insList);
+        return new ResultVO(StatusCode.OK, "查询完成！", insPageInfo);
     }
 
     /**
