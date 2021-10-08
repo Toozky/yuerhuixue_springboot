@@ -42,12 +42,25 @@ public class UsersController {
     @ApiOperation("用户登录接口")
     @ApiImplicitParams({
             @ApiImplicitParam(dataType = "string", name = "name", value = "用户名", required = true),
-            @ApiImplicitParam(dataType = "string", name = "pwd", value = "用户密码", required = true)
+            @ApiImplicitParam(dataType = "string", name = "pwd", value = "用户密码", required = true),
+            @ApiImplicitParam(dataType = "string", name = "code", value = "验证码", required = true)
     })
     @GetMapping("/login")
     public ResultVO login(@RequestParam("name") String name,
-                          @RequestParam("pwd") String pwd){
-        return usersService.userLogin(name, pwd);
+                          @RequestParam("pwd") String pwd,
+                          @RequestParam("code") String verificationCode){
+        //判断时效
+        if(!redisTemplate.hasKey("imgCode")) {
+            return new ResultVO(StatusCode.NO, "验证码已过期！", null);
+        }
+
+        //判断输入，成功则进行账号密码判断
+        String code = redisTemplate.opsForValue().get("imgCode").toString();
+        if(StringUtils.equals(verificationCode,code)) {
+            return usersService.userLogin(name, pwd);
+        } else {
+            return new ResultVO(StatusCode.NO, "验证码输入错误！", null);
+        }
     }
 
     @ApiOperation("用户注册接口")
@@ -120,27 +133,4 @@ public class UsersController {
         out.flush();
         out.close();
     }
-
-    /**
-     * 验证验证码
-     * @param verificationCode 用户输入验证码
-     * @return 执行结果
-     */
-    @PostMapping("/compareCode")
-    public ResultVO compareCode(@RequestParam("code") String verificationCode) {
-
-        //判断时效
-        if(!redisTemplate.hasKey("imgCode")) {
-            return new ResultVO(StatusCode.NO, "验证码已过期！", null);
-        }
-
-        //判断输入
-        String code = redisTemplate.opsForValue().get("imgCode").toString();
-        if(StringUtils.equals(verificationCode,code)) {
-            return new ResultVO(StatusCode.OK, "验证成功！", null);
-        } else {
-            return new ResultVO(StatusCode.NO, "验证码输入错误！", null);
-        }
-    }
-
 }
