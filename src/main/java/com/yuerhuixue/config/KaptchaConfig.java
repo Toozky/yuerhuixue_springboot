@@ -16,22 +16,22 @@ public class KaptchaConfig {
         Properties properties = new Properties();
 
         // 图片宽
-        properties.setProperty("kaptcha.image.width", "180");
+        properties.setProperty("kaptcha.image.width", "120");
 
         // 图片高
-        properties.setProperty("kaptcha.image.height", "50");
+        properties.setProperty("kaptcha.image.height", "40");
 
         // 图片边框
         properties.setProperty("kaptcha.border", "yes");
 
         // 边框颜色
-        properties.setProperty("kaptcha.border.color", "105,179,90");
+        properties.setProperty("kaptcha.border.color", "220,223,230");
 
         // 字体颜色
-        properties.setProperty("kaptcha.textproducer.font.color", "blue");
+        properties.setProperty("kaptcha.textproducer.font.color", "blue,red,yellow");
 
         // 字体大小
-        properties.setProperty("kaptcha.textproducer.font.size", "40");
+        properties.setProperty("kaptcha.textproducer.font.size", "28");
 
         // session key
         properties.setProperty("kaptcha.session.key", "code");
