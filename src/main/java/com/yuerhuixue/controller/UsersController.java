@@ -137,7 +137,7 @@ public class UsersController {
         //判断输入
         String code = redisTemplate.opsForValue().get("imgCode").toString();
         if(StringUtils.equals(verificationCode,code)) {
-            return new ResultVO(StatusCode.NO, "验证成功！", null);
+            return new ResultVO(StatusCode.OK, "验证成功！", null);
         } else {
             return new ResultVO(StatusCode.NO, "验证码输入错误！", null);
         }
