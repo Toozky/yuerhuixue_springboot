@@ -130,7 +130,7 @@ public class UsersController {
     public ResultVO compareCode(@RequestParam("code") String verificationCode) {
 
         //判断时效
-        if(!redisTemplate.hasKey("imageCode")) {
+        if(!redisTemplate.hasKey("imgCode")) {
             return new ResultVO(StatusCode.NO, "验证码已过期！", null);
         }
 
