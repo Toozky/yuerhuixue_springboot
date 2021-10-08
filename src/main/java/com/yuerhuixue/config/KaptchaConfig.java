@@ -28,7 +28,7 @@ public class KaptchaConfig {
         properties.setProperty("kaptcha.border.color", "220,223,230");
 
         // 字体颜色
-        properties.setProperty("kaptcha.textproducer.font.color", "blue,red,yellow");
+        properties.setProperty("kaptcha.textproducer.font.color", "blue");
 
         // 字体大小
         properties.setProperty("kaptcha.textproducer.font.size", "28");
