@@ -19,7 +19,6 @@ import java.io.IOException;
 @RestController
 @RequestMapping("/videoType")
 @Api(value = "视频类型操作接口", tags = "视频类型管理")
-@ResponseBody
 @CrossOrigin
 public class VideoTypeController {
 

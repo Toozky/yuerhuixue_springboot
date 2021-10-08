@@ -17,7 +17,6 @@ import java.io.IOException;
 @RestController
 @RequestMapping("/admin")
 @Api(value = "管理员操作接口", tags = "管理员管理")
-@ResponseBody
 @CrossOrigin
 public class AdminsController {
 

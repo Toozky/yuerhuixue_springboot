@@ -17,7 +17,6 @@ import java.io.IOException;
 @RestController
 @RequestMapping("/insType")
 @Api(value = "乐器类型操作接口", tags = "乐器类型管理")
-@ResponseBody
 @CrossOrigin
 public class InsTypeController {
 

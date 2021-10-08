@@ -17,7 +17,6 @@ import java.io.IOException;
 @RestController
 @RequestMapping("/ins")
 @Api(value = "乐器操作接口", tags = "乐器管理")
-@ResponseBody
 @CrossOrigin
 public class InsController {
     

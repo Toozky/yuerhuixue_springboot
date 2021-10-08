@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/shoppingCart")
 @Api(value = "购物车操作接口", tags = "购物车管理")
-@ResponseBody
 @CrossOrigin
 public class ShoppingCartController {
 

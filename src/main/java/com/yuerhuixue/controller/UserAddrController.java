@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/userAddr")
 @Api(value = "收货地址操作接口", tags = "收货地址管理")
-@ResponseBody
 @CrossOrigin
 public class UserAddrController {
 
