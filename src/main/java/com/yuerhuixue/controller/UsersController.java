@@ -114,6 +114,7 @@ public class UsersController {
      * @param response 服务器响应
      * @throws IOException 异常
      */
+    @ApiOperation("创建验证码接口")
     @GetMapping("/createCode")
     public void createCode(HttpServletResponse response) throws IOException {
         response.setHeader("Cache-Control", "no-store, no-cache");
