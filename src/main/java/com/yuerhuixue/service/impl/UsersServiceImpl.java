@@ -113,6 +113,9 @@ public class UsersServiceImpl implements UsersService {
         //设置修改时间
         user.setUpdateTime(new Date());
 
+        //不修改密码
+        user.setUserPwd(null);
+
         //根据主键更新字段
         int i = usersMapper.updateByPrimaryKeySelective(user);
         if (i > 0){

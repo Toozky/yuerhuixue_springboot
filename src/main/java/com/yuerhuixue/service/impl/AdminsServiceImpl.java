@@ -2,7 +2,6 @@ package com.yuerhuixue.service.impl;
 
 import com.yuerhuixue.dao.AdminsMapper;
 import com.yuerhuixue.pojo.Admins;
-import com.yuerhuixue.pojo.Users;
 import com.yuerhuixue.service.AdminsService;
 import com.yuerhuixue.utils.MD5Utils;
 import com.yuerhuixue.vo.ResultVO;
@@ -94,6 +93,9 @@ public class AdminsServiceImpl implements AdminsService {
 
         //设置修改时间
         admin.setUpdateTime(new Date());
+
+        //不修改密码
+        admin.setAdminPwd(null);
 
         //根据主键更新字段
         int i = adminsMapper.updateByPrimaryKeySelective(admin);
