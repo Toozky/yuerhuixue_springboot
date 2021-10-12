@@ -6,6 +6,9 @@ import com.yuerhuixue.service.AdminsService;
 import com.yuerhuixue.utils.MD5Utils;
 import com.yuerhuixue.vo.ResultVO;
 import com.yuerhuixue.vo.StatusCode;
+import io.jsonwebtoken.JwtBuilder;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
@@ -76,11 +79,22 @@ public class AdminsServiceImpl implements AdminsService {
         }else {
             String md5Pwd = MD5Utils.md5(pwd);
             if (md5Pwd.equals(admins.get(0).getAdminPwd())){
-                return new ResultVO(StatusCode.OK, "登陆成功！", admins.get(0));
+
+                //校验密码成功，生成token
+                JwtBuilder builder = Jwts.builder();
+                String token = builder.setSubject(name)    //token数据
+                        .setIssuedAt(new Date())    //token生成时间
+                        .setId(admins.get(0).getAdminId() + "")    //设置管理员id为tokenid
+                        .setExpiration(new Date(System.currentTimeMillis() + 24 * 60 * 60 * 100))    //设置过期时间
+                        .signWith(SignatureAlgorithm.HS256, "yuerhuixue")   //设置加密方式和加密密码
+                        .compact();
+
+                return new ResultVO(StatusCode.OK, token, admins.get(0));
             }else {
                 return new ResultVO(StatusCode.NO, "密码错误！", null);
             }
         }
+
     }
 
     /**
