@@ -75,16 +75,6 @@ public class AdminsController {
     @ApiOperation("管理员信息修改接口")
     @PutMapping("/modify")
     public ResultVO modify(@RequestBody Admins admin){
-        
-        //获取当前id信息
-        Admins adminBefore = (Admins) adminsService.findAdminById(admin.getAdminId()).getData();
-
-        //修改图片后，删除之前的图片
-        if (admin.getAdminImg() != null){
-            if (!adminBefore.getAdminImg().equals("headDefault.jpg")){
-                FileManage.fileDelete(adminBefore.getAdminImg(),"static/uploadImg/head");
-            }
-        }
         return adminsService.adminModify(admin);
     }
 

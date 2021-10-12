@@ -32,16 +32,6 @@ public class InsTypeController {
     @ApiOperation("修改乐器类型接口")
     @PutMapping("/modify")
     public ResultVO modifyInsType(@RequestBody InsType insType){
-        
-        //获取当前id信息
-        InsType insTypeBefore = (InsType) insTypeService.findInsTypeById(insType.getTypeId()).getData();
-
-        //修改图片后，删除之前的图片
-        if (insType.getTypeImg() != null){
-            if (!insTypeBefore.getTypeImg().equals("occupancy.jpg")){
-                FileManage.fileDelete(insTypeBefore.getTypeImg(),"static/uploadImg/insType");
-            }
-        }
         return insTypeService.modifyInsType(insType);
     }
 

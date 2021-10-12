@@ -32,16 +32,6 @@ public class InsController {
     @ApiOperation("修改乐器接口")
     @PutMapping("/modify")
     public ResultVO modifyIns(@RequestBody Ins ins){
-
-        //获取当前id信息
-        Ins insBefore = (Ins) insService.findInsById(ins.getInsId()).getData();
-
-        //修改图片后，删除之前的图片
-        if (ins.getInsImg() != null){
-            if (!insBefore.getInsImg().equals("occupancy.jpg")){
-                FileManage.fileDelete(insBefore.getInsImg(),"static/uploadImg/ins");
-            }
-        }
         return insService.modifyIns(ins);
     }
 

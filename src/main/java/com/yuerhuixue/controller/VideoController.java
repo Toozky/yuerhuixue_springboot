@@ -32,22 +32,6 @@ public class VideoController {
     @ApiOperation("修改视频接口")
     @PutMapping("/modify")
     public ResultVO modifyVideo(@RequestBody Video video){
-
-        //获取当前id信息
-        Video videoBefore = (Video) videoService.findVideoById(video.getVideoId()).getData();
-
-        //修改图片后，删除之前的图片
-        if (video.getVideoImg() != null){
-            if (!videoBefore.getVideoImg().equals("occupancy.jpg")){
-                FileManage.fileDelete(videoBefore.getVideoImg(),"static/uploadImg/video");
-            }
-        }
-
-        //修改视频后，删除之前的视频
-        if (video.getVideoUrl() != null){
-            FileManage.fileDelete(videoBefore.getVideoUrl(), "static/uploadVideo");
-        }
-
         return videoService.modifyVideo(video);
     }
 

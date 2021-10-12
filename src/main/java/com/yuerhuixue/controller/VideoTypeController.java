@@ -34,16 +34,6 @@ public class VideoTypeController {
     @ApiOperation("修改视频类型接口")
     @PutMapping("/modify")
     public ResultVO modifyVideoType(@RequestBody VideoType videoType){
-
-        //获取当前id信息
-        VideoType videoTypeBefore = (VideoType) videoTypeService.findVideoTypeById(videoType.getTypeId()).getData();
-
-        //修改图片后，删除之前的图片
-        if (videoType.getTypeImg() != null){
-            if (!videoTypeBefore.getTypeImg().equals("occupancy.jpg")){
-                FileManage.fileDelete(videoTypeBefore.getTypeImg(),"static/uploadImg/videoType");
-            }
-        }
         return videoTypeService.modifyVideoType(videoType);
     }
 

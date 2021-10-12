@@ -76,16 +76,6 @@ public class UsersController {
     @ApiOperation("用户信息修改接口")
     @PutMapping("/modify")
     public ResultVO modify(@RequestBody Users user) {
-
-        //获取当前id信息
-        Users userBefore = (Users) usersService.findUserById(user.getUserId()).getData();
-
-        //修改图片后，删除之前的图片
-        if (user.getUserImg() != null){
-            if (!userBefore.getUserImg().equals("headDefault.jpg")){
-                FileManage.fileDelete(userBefore.getUserImg(),"static/uploadImg/head");
-            }
-        }
         return usersService.userModify(user);
     }
 
