@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -89,7 +90,11 @@ public class AdminsServiceImpl implements AdminsService {
                         .signWith(SignatureAlgorithm.HS256, "yuerhuixue")   //设置加密方式和加密密码
                         .compact();
 
-                return new ResultVO(StatusCode.OK, token, admins.get(0));
+                //创建map返回管理员信息和token
+                HashMap<Object, Object> map = new HashMap<>();
+                map.put("admin", admins.get(0));
+                map.put("token", token);
+                return new ResultVO(StatusCode.OK, "登陆成功！", map);
             }else {
                 return new ResultVO(StatusCode.NO, "密码错误！", null);
             }
