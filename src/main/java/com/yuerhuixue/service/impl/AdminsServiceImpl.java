@@ -116,8 +116,27 @@ public class AdminsServiceImpl implements AdminsService {
         //不修改密码
         admin.setAdminPwd(null);
 
+        int i;
+
+        //查询输入是否与原管理员名相同，不同时判断是否重名
+        //原管理员名
+        Admins adminById = adminsMapper.selectByPrimaryKey(admin.getAdminId());
+
+        //查询输入是否存在
+        Example example = new Example(Admins.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("adminName",admin.getAdminName());
+        List<Admins> admins = adminsMapper.selectByExample(example);
+
+        //判断
+        if (admin.getAdminName().equals(adminById.getAdminName())){
+            admin.setAdminName(null);
+        }else if (admins.size() != 0){
+            return new ResultVO(StatusCode.NO, "管理员名已存在！", null);
+        }
+
         //根据主键更新字段
-        int i = adminsMapper.updateByPrimaryKeySelective(admin);
+        i = adminsMapper.updateByPrimaryKeySelective(admin);
         if (i > 0){
             return new ResultVO(StatusCode.OK, "修改成功！", admin);
         }else {

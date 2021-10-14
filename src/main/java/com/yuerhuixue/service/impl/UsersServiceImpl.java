@@ -1,6 +1,7 @@
 package com.yuerhuixue.service.impl;
 
 import com.yuerhuixue.dao.UsersMapper;
+import com.yuerhuixue.pojo.Admins;
 import com.yuerhuixue.pojo.Users;
 import com.yuerhuixue.service.UsersService;
 import com.yuerhuixue.utils.MD5Utils;
@@ -121,8 +122,27 @@ public class UsersServiceImpl implements UsersService {
         //不修改密码
         user.setUserPwd(null);
 
+        int i;
+
+        //查询输入是否与原用户名相同，不同时判断是否重名
+        //原用户名
+        Users userById = usersMapper.selectByPrimaryKey(user.getUserId());
+
+        //查询输入是否存在
+        Example example = new Example(Users.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("userName",user.getUserName());
+        List<Users> users = usersMapper.selectByExample(example);
+
+        //判断
+        if (user.getUserName().equals(userById.getUserName())){
+            user.setUserName(null);
+        }else if (users.size() != 0){
+            return new ResultVO(StatusCode.NO, "管理员名已存在！", null);
+        }
+
         //根据主键更新字段
-        int i = usersMapper.updateByPrimaryKeySelective(user);
+        i = usersMapper.updateByPrimaryKeySelective(user);
         if (i > 0){
             return new ResultVO(StatusCode.OK, "修改成功！", user);
         }else {

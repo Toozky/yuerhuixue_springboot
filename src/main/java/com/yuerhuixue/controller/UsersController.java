@@ -99,11 +99,6 @@ public class UsersController {
         return FileManage.imgUpload(img,"static/uploadImg/head");
     }
 
-    /**
-     * 创建验证码
-     * @param response 服务器响应
-     * @throws IOException 异常
-     */
     @ApiOperation("创建验证码接口")
     @GetMapping("/createCode")
     public void createCode(HttpServletResponse response) throws IOException {
