@@ -4,6 +4,7 @@ import com.alibaba.druid.util.StringUtils;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.yuerhuixue.pojo.Admins;
 import com.yuerhuixue.service.AdminsService;
+import com.yuerhuixue.service.UsersService;
 import com.yuerhuixue.utils.FileManage;
 import com.yuerhuixue.vo.ResultVO;
 import com.yuerhuixue.vo.StatusCode;
@@ -31,6 +32,9 @@ public class AdminsController {
 
     @Autowired
     private AdminsService adminsService;
+
+    @Autowired
+    private UsersService usersService;
 
     @Autowired
     private DefaultKaptcha defaultKaptcha;
@@ -116,6 +120,16 @@ public class AdminsController {
         ImageIO.write(image, "jpg", out);
         out.flush();
         out.close();
+    }
+
+    @ApiOperation("查询用户全表接口")
+    @ApiImplicitParams({
+            @ApiImplicitParam(dataType = "int", name = "pageNum", value = "页码", required = true),
+            @ApiImplicitParam(dataType = "int", name = "pageSize", value = "当前页码数据条数", required = true)
+    })
+    @GetMapping("userList")
+    public ResultVO userList(Integer pageNum, Integer pageSize){
+        return usersService.userList(pageNum, pageSize);
     }
 
 }

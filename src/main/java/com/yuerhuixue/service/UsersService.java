@@ -20,4 +20,7 @@ public interface UsersService {
     //修改密码
     ResultVO modifyPwd(Integer userId, String pwd, String NewPwd);
 
+    //用户列表
+    ResultVO userList(Integer pageNum, Integer pageSize);
+
 }

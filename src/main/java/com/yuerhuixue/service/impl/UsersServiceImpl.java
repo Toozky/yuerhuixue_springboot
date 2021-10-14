@@ -1,7 +1,8 @@
 package com.yuerhuixue.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.yuerhuixue.dao.UsersMapper;
-import com.yuerhuixue.pojo.Admins;
 import com.yuerhuixue.pojo.Users;
 import com.yuerhuixue.service.UsersService;
 import com.yuerhuixue.utils.MD5Utils;
@@ -192,4 +193,15 @@ public class UsersServiceImpl implements UsersService {
         }
     }
 
+    @Override
+    public ResultVO userList(Integer pageNum, Integer pageSize) {
+        
+        //分页
+        PageHelper.startPage(pageNum, pageSize);
+
+        //查询
+        List<Users> userList = usersMapper.selectAll();
+        PageInfo<Users> userPageInfo = new PageInfo<>(userList);
+        return new ResultVO(StatusCode.OK, "查询完成！", userPageInfo);
+    }
 }
