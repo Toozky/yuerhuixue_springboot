@@ -83,8 +83,11 @@ public class InsServiceImpl implements InsService {
         }
     }
 
+
     /**
-     * 查询所有乐器
+     * 查询乐器列表
+     * @param pageNum 页码
+     * @param pageSize 当前页码数据条数
      * @return 执行结果
      */
     @Override

@@ -88,8 +88,11 @@ public class VideoServiceImpl implements VideoService {
         }
     }
 
+
     /**
-     * 查询所有视频
+     * 查询视频列表
+     * @param pageNum 页码
+     * @param pageSize 当前页码数据条数
      * @return 执行结果
      */
     @Override

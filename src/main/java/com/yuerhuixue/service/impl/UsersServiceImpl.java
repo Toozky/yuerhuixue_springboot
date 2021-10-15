@@ -193,6 +193,12 @@ public class UsersServiceImpl implements UsersService {
         }
     }
 
+    /**
+     * 查询用户列表
+     * @param pageNum 页码
+     * @param pageSize 当前页码数据条数
+     * @return 执行结果
+     */
     @Override
     public ResultVO userList(Integer pageNum, Integer pageSize) {
         
@@ -203,5 +209,31 @@ public class UsersServiceImpl implements UsersService {
         List<Users> userList = usersMapper.selectAll();
         PageInfo<Users> userPageInfo = new PageInfo<>(userList);
         return new ResultVO(StatusCode.OK, "查询完成！", userPageInfo);
+    }
+
+    /**
+     * 管理员修改用户信息
+     * @param user 用户对象
+     * @return 执行结果
+     */
+    @Override
+    public ResultVO userModifyByAdmin(Users user) {
+
+        //设置修改时间
+        user.setUpdateTime(new Date());
+
+        //设置用户密码
+        if (user.getUserPwd()!=""){
+            String md5Pwd = MD5Utils.md5(user.getUserPwd());
+            user.setUserPwd(md5Pwd);
+        }
+
+        //根据主键更新字段
+        int i = usersMapper.updateByPrimaryKeySelective(user);
+        if (i > 0){
+            return new ResultVO(StatusCode.OK, "修改成功！", user);
+        }else {
+            return new ResultVO(StatusCode.NO, "修改失败！", null);
+        }
     }
 }

@@ -3,6 +3,7 @@ package com.yuerhuixue.controller;
 import com.alibaba.druid.util.StringUtils;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.yuerhuixue.pojo.Admins;
+import com.yuerhuixue.pojo.Users;
 import com.yuerhuixue.service.AdminsService;
 import com.yuerhuixue.service.UsersService;
 import com.yuerhuixue.utils.FileManage;
@@ -130,6 +131,12 @@ public class AdminsController {
     @GetMapping("userList")
     public ResultVO userList(Integer pageNum, Integer pageSize){
         return usersService.userList(pageNum, pageSize);
+    }
+
+    @ApiOperation("用户信息修改接口")
+    @PutMapping("/userModify")
+    public ResultVO userModify(@RequestBody Users user) {
+        return usersService.userModifyByAdmin(user);
     }
 
 }
