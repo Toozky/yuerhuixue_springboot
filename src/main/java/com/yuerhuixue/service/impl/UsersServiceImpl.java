@@ -139,7 +139,7 @@ public class UsersServiceImpl implements UsersService {
         if (user.getUserName().equals(userById.getUserName())){
             user.setUserName(null);
         }else if (users.size() != 0){
-            return new ResultVO(StatusCode.NO, "管理员名已存在！", null);
+            return new ResultVO(StatusCode.NO, "用户名已存在！", null);
         }
 
         //根据主键更新字段
@@ -211,29 +211,4 @@ public class UsersServiceImpl implements UsersService {
         return new ResultVO(StatusCode.OK, "查询完成！", userPageInfo);
     }
 
-    /**
-     * 管理员修改用户信息
-     * @param user 用户对象
-     * @return 执行结果
-     */
-    @Override
-    public ResultVO userModifyByAdmin(Users user) {
-
-        //设置修改时间
-        user.setUpdateTime(new Date());
-
-        //设置用户密码
-        if (user.getUserPwd()!=""){
-            String md5Pwd = MD5Utils.md5(user.getUserPwd());
-            user.setUserPwd(md5Pwd);
-        }
-
-        //根据主键更新字段
-        int i = usersMapper.updateByPrimaryKeySelective(user);
-        if (i > 0){
-            return new ResultVO(StatusCode.OK, "修改成功！", user);
-        }else {
-            return new ResultVO(StatusCode.NO, "修改失败！", null);
-        }
-    }
 }

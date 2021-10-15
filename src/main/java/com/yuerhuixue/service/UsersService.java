@@ -23,6 +23,5 @@ public interface UsersService {
     //用户列表
     ResultVO userList(Integer pageNum, Integer pageSize);
 
-    //管理员修改密码
-    ResultVO userModifyByAdmin(Users user);
+
 }

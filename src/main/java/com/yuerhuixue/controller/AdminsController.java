@@ -136,7 +136,7 @@ public class AdminsController {
     @ApiOperation("用户信息修改接口")
     @PutMapping("/userModify")
     public ResultVO userModify(@RequestBody Users user) {
-        return usersService.userModifyByAdmin(user);
+        return usersService.userModify(user);
     }
 
 }

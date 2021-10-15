@@ -17,7 +17,6 @@ public class InterceptorConfig implements WebMvcConfigurer {
 
         //设置拦截规则
         registry.addInterceptor(checkToeknInterceptor)
-                .addPathPatterns("/user/modify")
-                .addPathPatterns("/user/modifyPwd");
+                .addPathPatterns("");
     }
 }
