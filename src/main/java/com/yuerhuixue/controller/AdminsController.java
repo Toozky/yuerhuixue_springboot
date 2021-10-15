@@ -136,6 +136,11 @@ public class AdminsController {
     @ApiOperation("用户信息修改接口")
     @PutMapping("/userModify")
     public ResultVO userModify(@RequestBody Users user) {
+
+        System.out.println("++++++++++++++++++");
+        System.out.println(user.toString());
+        System.out.println("++++++++++++++++++");
+
         return usersService.userModify(user);
     }
 

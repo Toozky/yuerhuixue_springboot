@@ -138,6 +138,7 @@ public class AdminsServiceImpl implements AdminsService {
         //根据主键更新字段
         i = adminsMapper.updateByPrimaryKeySelective(admin);
         if (i > 0){
+            admin.setAdminName(adminById.getAdminName());
             return new ResultVO(StatusCode.OK, "修改成功！", admin);
         }else {
             return new ResultVO(StatusCode.NO, "修改失败！", null);

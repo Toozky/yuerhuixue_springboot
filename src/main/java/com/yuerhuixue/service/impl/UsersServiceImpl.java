@@ -145,6 +145,7 @@ public class UsersServiceImpl implements UsersService {
         //根据主键更新字段
         i = usersMapper.updateByPrimaryKeySelective(user);
         if (i > 0){
+            user.setUserName(userById.getUserName());
             return new ResultVO(StatusCode.OK, "修改成功！", user);
         }else {
             return new ResultVO(StatusCode.NO, "修改失败！", null);
