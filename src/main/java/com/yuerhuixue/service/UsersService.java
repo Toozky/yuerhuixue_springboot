@@ -26,4 +26,7 @@ public interface UsersService {
     //管理员修改信息
     ResultVO userModifyByAdmin(Users user);
 
+    //用户删除
+    ResultVO userDelete(Integer userId);
+
 }

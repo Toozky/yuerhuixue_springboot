@@ -257,4 +257,21 @@ public class UsersServiceImpl implements UsersService {
             return new ResultVO(StatusCode.NO, "修改失败！", null);
         }
     }
+
+    /**
+     * 用户删除
+     * @param userId 用户id
+     * @return 执行结果
+     */
+    @Override
+    public ResultVO userDelete(Integer userId) {
+        int i = usersMapper.deleteByPrimaryKey(userId);
+
+        if(i > 0){
+            return new ResultVO(StatusCode.OK, "删除成功！", null);
+        }else {
+            return new ResultVO(StatusCode.NO, "删除失败！", null);
+        }
+
+    }
 }

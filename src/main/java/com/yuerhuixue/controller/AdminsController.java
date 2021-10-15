@@ -13,6 +13,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
@@ -137,6 +138,15 @@ public class AdminsController {
     @PutMapping("/userModify")
     public ResultVO userModify(@RequestBody Users user) {
         return usersService.userModifyByAdmin(user);
+    }
+
+    @ApiOperation("用户删除接口")
+    @ApiImplicitParams({
+            @ApiImplicitParam(dataType = "int", name = "id", value = "用户id", required = true)
+    })
+    @DeleteMapping("/userDelete")
+    public ResultVO userDelete(@RequestParam("id") Integer userId){
+        return usersService.userDelete(userId);
     }
 
 }
