@@ -136,12 +136,7 @@ public class AdminsController {
     @ApiOperation("用户信息修改接口")
     @PutMapping("/userModify")
     public ResultVO userModify(@RequestBody Users user) {
-
-        if (user.getUserPwd().equals("******")){
-            user.setUserPwd(null);
-        }
-
-        return usersService.userModify(user);
+        return usersService.userModifyByAdmin(user);
     }
 
 }

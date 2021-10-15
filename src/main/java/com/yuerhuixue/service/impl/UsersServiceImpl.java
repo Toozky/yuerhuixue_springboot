@@ -212,4 +212,49 @@ public class UsersServiceImpl implements UsersService {
         return new ResultVO(StatusCode.OK, "查询完成！", userPageInfo);
     }
 
+    /**
+     * 管理员修改用户信息
+     * @param user 用户对象
+     * @return 执行结果
+     */
+    @Override
+    public ResultVO userModifyByAdmin(Users user) {
+
+        //设置修改时间
+        user.setUpdateTime(new Date());
+
+        //查询输入是否与原用户名相同，不同时判断是否重名
+        //原用户名
+        Users userById = usersMapper.selectByPrimaryKey(user.getUserId());
+
+        //查询输入是否存在
+        Example example = new Example(Users.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("userName",user.getUserName());
+        List<Users> users = usersMapper.selectByExample(example);
+
+        //判断
+        if (user.getUserName().equals(userById.getUserName())){
+            user.setUserName(null);
+        }else if (users.size() != 0){
+            return new ResultVO(StatusCode.NO, "用户名已存在！", null);
+        }
+
+        //判断密码是否修改
+        if (user.getUserPwd().equals("******")){
+            user.setUserPwd(null);
+        }else {
+            String md5Pwd = MD5Utils.md5(user.getUserPwd());
+            user.setUserPwd(md5Pwd);
+        }
+
+        //根据主键更新字段
+        int i = usersMapper.updateByPrimaryKeySelective(user);
+        if (i > 0){
+            user.setUserName(userById.getUserName());
+            return new ResultVO(StatusCode.OK, "修改成功！", user);
+        }else {
+            return new ResultVO(StatusCode.NO, "修改失败！", null);
+        }
+    }
 }
