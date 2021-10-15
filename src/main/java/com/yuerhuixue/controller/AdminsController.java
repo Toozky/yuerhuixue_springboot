@@ -137,9 +137,9 @@ public class AdminsController {
     @PutMapping("/userModify")
     public ResultVO userModify(@RequestBody Users user) {
 
-        System.out.println("++++++++++++++++++");
-        System.out.println(user.toString());
-        System.out.println("++++++++++++++++++");
+        if (user.getUserPwd().equals("******")){
+            user.setUserPwd(null);
+        }
 
         return usersService.userModify(user);
     }
