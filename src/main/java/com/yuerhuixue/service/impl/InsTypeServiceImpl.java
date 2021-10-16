@@ -143,4 +143,21 @@ public class InsTypeServiceImpl implements InsTypeService {
         return new ResultVO(StatusCode.OK, "查询完成！", insTypeListFive);
     }
 
+    /**
+     * 查询乐器类型列表（分页）
+     * @param pageNum 页码
+     * @param pageSize 当前页码数据条数
+     * @return 执行结果
+     */
+    @Override
+    public ResultVO insTypePageList(Integer pageNum, Integer pageSize) {
+        
+        //分页
+        PageHelper.startPage(pageNum, pageSize);
+
+        //查询
+        List<InsType> insTypeList = insTypeMapper.selectAll();
+        PageInfo<InsType> insTypePageInfo = new PageInfo<>(insTypeList);
+        return new ResultVO(StatusCode.OK, "查询完成！", insTypePageInfo);
+    }
 }

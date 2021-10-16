@@ -83,4 +83,14 @@ public class InsTypeController {
         return insTypeService.insByType(insTypeId, pageNum, pageSize);
     }
 
+    @ApiOperation("查询乐器类型列表接口")
+    @ApiImplicitParams({
+            @ApiImplicitParam(dataType = "int", name = "pageNum", value = "页码", required = true),
+            @ApiImplicitParam(dataType = "int", name = "pageSize", value = "当前页码数据条数", required = true)
+    })
+    @GetMapping("/pageList")
+    public ResultVO insTypeList(Integer pageNum, Integer pageSize){
+        return insTypeService.insTypePageList(pageNum, pageSize);
+    }
+
 }

@@ -25,5 +25,8 @@ public interface InsTypeService {
 
     //前五条乐器类型
     ResultVO insTypeListFive();
+
+    //查询所有乐器类型（分页）
+    ResultVO insTypePageList(Integer pageNum, Integer pageSize);
     
 }
