@@ -128,7 +128,7 @@ public class AdminsController {
             @ApiImplicitParam(dataType = "int", name = "pageNum", value = "页码", required = true),
             @ApiImplicitParam(dataType = "int", name = "pageSize", value = "当前页码数据条数", required = true)
     })
-    @GetMapping("userList")
+    @GetMapping("/userList")
     public ResultVO userList(Integer pageNum, Integer pageSize){
         return usersService.userList(pageNum, pageSize);
     }
