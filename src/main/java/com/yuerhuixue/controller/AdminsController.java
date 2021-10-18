@@ -149,7 +149,7 @@ public class AdminsController {
     }
 
     @ApiOperation("用户性别人数统计接口")
-    @GetMapping("userGenderTotal")
+    @GetMapping("/userGenderTotal")
     public ResultVO userGenderTotal(){
         return usersService.userGenderTotal();
     }
