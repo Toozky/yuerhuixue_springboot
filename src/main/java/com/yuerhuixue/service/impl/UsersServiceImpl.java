@@ -11,6 +11,7 @@ import com.yuerhuixue.vo.StatusCode;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import javafx.scene.media.MediaPlayer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
@@ -274,4 +275,32 @@ public class UsersServiceImpl implements UsersService {
         }
 
     }
+
+    /**
+     * 用户性别人数统计
+     * @return 执行结果
+     */
+    @Override
+    public ResultVO userGenderTotal() {
+
+        HashMap<Object, Object> map = new HashMap<>();
+        int maleSize = 0;
+        int femaleSize = 0;
+        int nullSize = 0;
+        List<Users> userList = usersMapper.selectAll();
+
+        //封装统计map
+        for (Users user : userList) {
+            if (user.getUserGender().equals("male")){
+                map.put("male", maleSize++);
+            }else if (user.getUserGender().equals("female")){
+                map.put("female", femaleSize++);
+            }else {
+                map.put("nullSize", nullSize++);
+            }
+        }
+
+        return new ResultVO(StatusCode.OK, "统计完成！", map);
+    }
+
 }

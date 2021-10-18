@@ -29,4 +29,7 @@ public interface UsersService {
     //用户删除
     ResultVO userDelete(Integer userId);
 
+    //用户性别人数统计
+    ResultVO userGenderTotal();
+
 }

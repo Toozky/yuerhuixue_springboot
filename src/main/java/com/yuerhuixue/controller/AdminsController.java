@@ -148,4 +148,10 @@ public class AdminsController {
         return usersService.userDelete(userId);
     }
 
+    @ApiOperation("用户性别人数统计接口")
+    @GetMapping("userGenderTotal")
+    public ResultVO userGenderTotal(){
+        return usersService.userGenderTotal();
+    }
+
 }
