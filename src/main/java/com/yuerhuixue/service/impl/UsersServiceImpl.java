@@ -292,12 +292,15 @@ public class UsersServiceImpl implements UsersService {
         //封装统计map
         for (Users user : userList) {
             if (user.getUserGender().equals("male")){
-                map.put("male", maleSize++);
+                maleSize++;
             }else if (user.getUserGender().equals("female")){
-                map.put("female", femaleSize++);
+                femaleSize++;
             }else {
-                map.put("nullSize", nullSize++);
+                nullSize++;
             }
+            map.put("maleCount",maleSize);
+            map.put("femaleCount",femaleSize);
+            map.put("nullCount",nullSize);
         }
 
         return new ResultVO(StatusCode.OK, "统计完成！", map);
