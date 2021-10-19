@@ -185,4 +185,14 @@ public class AdminsServiceImpl implements AdminsService {
             return new ResultVO(StatusCode.NO, "输入密码错误！", null);
         }
     }
+
+    /**
+     * 查询管理员数
+     * @return 执行结果
+     */
+    @Override
+    public ResultVO adminTotal() {
+        int adminTotal = adminsMapper.selectAll().size();
+        return new ResultVO(StatusCode.OK,"查询成功！", adminTotal);
+    }
 }

@@ -93,4 +93,10 @@ public class InsTypeController {
         return insTypeService.insTypePageList(pageNum, pageSize);
     }
 
+    @ApiOperation("统计各个类型乐器的个数接口")
+    @GetMapping("/insTotalByType")
+    public ResultVO insTotalByType(){
+        return insTypeService.insTotalByType();
+    }
+
 }

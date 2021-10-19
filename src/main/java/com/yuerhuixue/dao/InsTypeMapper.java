@@ -13,4 +13,7 @@ public interface InsTypeMapper extends GeneralDao<InsType> {
     //前五条乐器类型
     List<InsType> insTypeListFive();
 
+    //查询所有类型
+    List<InsTypeVO> insTypeVOList();
+
 }

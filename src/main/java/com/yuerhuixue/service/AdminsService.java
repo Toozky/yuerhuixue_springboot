@@ -20,4 +20,7 @@ public interface AdminsService {
     //修改密码
     ResultVO modifyPwd(Integer adminId, String pwd, String newPwd);
 
+    //查询管理员数
+    ResultVO adminTotal();
+
 }

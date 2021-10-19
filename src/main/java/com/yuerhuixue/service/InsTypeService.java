@@ -28,5 +28,8 @@ public interface InsTypeService {
 
     //查询所有乐器类型（分页）
     ResultVO insTypePageList(Integer pageNum, Integer pageSize);
+
+    //统计各个类型乐器的个数
+    ResultVO insTotalByType();
     
 }

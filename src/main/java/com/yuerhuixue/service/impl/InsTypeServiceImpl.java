@@ -7,6 +7,7 @@ import com.yuerhuixue.dao.InsMapper;
 import com.yuerhuixue.dao.InsTypeMapper;
 import com.yuerhuixue.pojo.Ins;
 import com.yuerhuixue.pojo.InsType;
+import com.yuerhuixue.pojo.InsTypeVO;
 import com.yuerhuixue.service.InsTypeService;
 import com.yuerhuixue.vo.ResultVO;
 import com.yuerhuixue.vo.StatusCode;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -159,5 +161,24 @@ public class InsTypeServiceImpl implements InsTypeService {
         List<InsType> insTypeList = insTypeMapper.selectAll();
         PageInfo<InsType> insTypePageInfo = new PageInfo<>(insTypeList);
         return new ResultVO(StatusCode.OK, "查询完成！", insTypePageInfo);
+    }
+
+    /**
+     * 统计各个类型乐器的个数
+     * @return 执行结果
+     */
+    @Override
+    public ResultVO insTotalByType() {
+        List<InsTypeVO> insTypeVOList = insTypeMapper.insTypeVOList();
+
+        //map存储
+        HashMap<Object, Object> map = new HashMap<>();
+
+        for (InsTypeVO insTypeVO : insTypeVOList) {
+            map.put(insTypeVO.getTypeName(), insTypeVO.getInsList().size());
+        }
+
+        return new ResultVO(StatusCode.OK, "查询完成！", map);
+
     }
 }

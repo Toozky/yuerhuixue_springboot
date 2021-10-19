@@ -23,6 +23,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 @RestController
@@ -152,6 +153,18 @@ public class AdminsController {
     @GetMapping("/userGenderTotal")
     public ResultVO userGenderTotal(){
         return usersService.userGenderTotal();
+    }
+
+    @ApiOperation("管理员数与用户数统计接口")
+    @GetMapping("/userAndAdminTotal")
+    public ResultVO userAndAdminTotal(){
+        int adminTotal = (int) adminsService.adminTotal().getData();
+        int userTotal = (int) usersService.userTotal().getData();
+
+        HashMap<Object, Object> map = new HashMap<>();
+        map.put("adminTotal", adminTotal);
+        map.put("userTotal", userTotal);
+        return new ResultVO(StatusCode.OK, "查询成功！", map);
     }
 
 }

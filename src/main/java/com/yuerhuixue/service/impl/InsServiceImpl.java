@@ -11,7 +11,9 @@ import com.yuerhuixue.vo.StatusCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -132,6 +134,34 @@ public class InsServiceImpl implements InsService {
     public ResultVO insListFive() {
         List<Ins> insListFive = insMapper.insListFive();
         return new ResultVO(StatusCode.OK, "查询完成！", insListFive);
+    }
+
+    /**
+     * 查询最贵的乐器
+     * @return
+     */
+    @Override
+    public ResultVO mostExpensive() {
+        List<Ins> insList = insMapper.selectAll();
+
+        //记录金额最高的金额以及对应乐器id
+        BigDecimal insPrice = new BigDecimal(0);
+        String insName = null;
+
+        //map存储
+        HashMap<Object, Object> map = new HashMap<>();
+
+        for (Ins ins : insList) {
+            if (ins.getInsPrice().compareTo(insPrice) > 0){
+                insPrice = ins.getInsPrice();
+                insName = ins.getInsName();
+            }
+        }
+
+        map.put("insName", insName);
+        map.put("insPrice", insPrice);
+        return new ResultVO(StatusCode.OK, "查询完成！", map);
+
     }
 
 }

@@ -303,4 +303,13 @@ public class UsersServiceImpl implements UsersService {
         return new ResultVO(StatusCode.OK, "统计完成！", map);
     }
 
+    /**
+     * 查询用户数
+     * @return 执行结果
+     */
+    @Override
+    public ResultVO userTotal() {
+        int userTotal = usersMapper.selectAll().size();
+        return new ResultVO(StatusCode.OK,"查询成功！", userTotal);
+    }
 }

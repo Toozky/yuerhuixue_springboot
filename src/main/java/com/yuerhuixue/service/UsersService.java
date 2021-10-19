@@ -32,4 +32,7 @@ public interface UsersService {
     //用户性别人数统计
     ResultVO userGenderTotal();
 
+    //查询用户数
+    ResultVO userTotal();
+
 }

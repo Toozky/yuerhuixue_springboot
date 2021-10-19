@@ -83,5 +83,11 @@ public class InsController {
     public ResultVO insInfo(@RequestParam("insId") Integer insId){
         return insService.findInsVOById(insId);
     }
+
+    @ApiOperation("查询最贵的乐器接口")
+    @GetMapping("/mostExpensive")
+    public ResultVO mostExpensive(){
+        return insService.mostExpensive();
+    }
     
 }

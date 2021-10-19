@@ -14,9 +14,51 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
 
+  <resultMap id="insTypeVOMap" type="com.yuerhuixue.pojo.InsTypeVO">
+    <id column="type_id_1" jdbcType="INTEGER" property="typeId" />
+    <result column="type_name_1" jdbcType="VARCHAR" property="typeName" />
+    <result column="type_img_1" jdbcType="VARCHAR" property="typeImg" />
+    <result column="type_desc_1" jdbcType="VARCHAR" property="typeDesc" />
+    <result column="type_level_1" jdbcType="VARCHAR" property="typeLevel" />
+    <result column="create_time_1" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time_1" jdbcType="TIMESTAMP" property="updateTime" />
+    <collection property="insList" ofType="com.yuerhuixue.pojo.Ins">
+      <id column="ins_id_2" jdbcType="INTEGER" property="insId" />
+      <result column="ins_name_2" jdbcType="VARCHAR" property="insName" />
+      <result column="ins_price_2" jdbcType="DECIMAL" property="insPrice" />
+      <result column="ins_stock_2" jdbcType="INTEGER" property="insStock" />
+      <result column="ins_img_2" jdbcType="VARCHAR" property="insImg" />
+      <result column="ins_brand_2" jdbcType="VARCHAR" property="insBrand" />
+      <result column="ins_desc_2" jdbcType="VARCHAR" property="insDesc" />
+      <result column="create_time_2" jdbcType="TIMESTAMP" property="createTime" />
+      <result column="update_time_2" jdbcType="TIMESTAMP" property="updateTime" />
+    </collection>
+  </resultMap>
+
   <select id="insTypeListFive" resultMap="BaseResultMap">
     select *
     from ins_type
     limit 5
   </select>
+  
+  <select id="insTypeVOList" resultMap="insTypeVOMap">
+    select t1.type_id as type_id_1,
+         t1.type_name as type_name_1,
+         t1.type_img as type_img_1,
+         t1.type_desc as type_desc_1,
+         t1.type_level as type_level_1,
+         t1.create_time as create_time_1,
+         t1.update_time as update_time_1,
+         t2.ins_id as ins_id_2,
+         t2.ins_name as ins_name_2,
+         t2.ins_price as ins_price_2,
+         t2.ins_stock as ins_stock_2,
+         t2.ins_img as ins_img_2,
+         t2.ins_brand as ins_brand_2,
+         t2.ins_desc as ins_desc_2,
+         t2.create_time as create_time_2,
+         t2.update_time as update_time_2
+    from ins_type t1 left join ins t2 on t1.type_id = t2.type_id
+  </select>
+  
 </mapper>

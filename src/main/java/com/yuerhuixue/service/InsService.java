@@ -4,6 +4,8 @@ import com.yuerhuixue.pojo.Ins;
 import com.yuerhuixue.pojo.InsVO;
 import com.yuerhuixue.vo.ResultVO;
 
+import java.sql.ResultSet;
+
 public interface InsService {
 
     //增加乐器
@@ -26,5 +28,8 @@ public interface InsService {
 
     //前五条乐器
     ResultVO insListFive();
+
+    //查询最贵的乐器
+    ResultVO mostExpensive();
 
 }
