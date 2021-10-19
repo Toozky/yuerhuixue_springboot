@@ -143,7 +143,9 @@ public class InsServiceImpl implements InsService {
         List<Ins> insList = insMapper.selectAll();
 
         //list存储
-        List<HashMap> total = new ArrayList<>();
+        List<Object> total = new ArrayList<>();
+        List<String> name = new ArrayList<>();
+        List<BigDecimal> price = new ArrayList<>();
 
         //冒泡排序
         for (int i = 0; i < insList.size()-1; i++){
@@ -159,10 +161,12 @@ public class InsServiceImpl implements InsService {
 
         //获取价格排序前五乐器名以及价格
         for (int index = 0; index < 5; index++){
-            HashMap<String, BigDecimal> map = new HashMap<>();
-            map.put(insList.get(index).getInsName(), insList.get(index).getInsPrice());
-            total.add(index, map);
+            name.add(index, insList.get(index).getInsName());
+            price.add(index, insList.get(index).getInsPrice());
         }
+
+        total.add(0, name);
+        total.add(1, price);
 
         return new ResultVO(StatusCode.OK, "查询完成！", total);
 

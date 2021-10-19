@@ -174,13 +174,16 @@ public class InsTypeServiceImpl implements InsTypeService {
         //list存储
         int index = 0;
         List<HashMap> total = new ArrayList<>();
+
         for (InsTypeVO insTypeVO : insTypeVOList) {
 
-            HashMap<String, Integer> map = new HashMap<>();
-            map.put(insTypeVO.getTypeName(), insTypeVO.getInsList().size());
-            total.add(index++, map);
+            HashMap<String, Object> an = new HashMap<>();
+            an.put("name", insTypeVO.getTypeName());
+            an.put("count", insTypeVO.getInsList().size());
 
+            total.add(index++, an);
         }
+
         return new ResultVO(StatusCode.OK, "查询完成！", total);
 
     }
