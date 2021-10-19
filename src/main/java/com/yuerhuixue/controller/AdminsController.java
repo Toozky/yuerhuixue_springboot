@@ -161,7 +161,7 @@ public class AdminsController {
         int adminTotal = (int) adminsService.adminTotal().getData();
         int userTotal = (int) usersService.userTotal().getData();
 
-        HashMap<Object, Object> map = new HashMap<>();
+        HashMap<String, Integer> map = new HashMap<>();
         map.put("adminTotal", adminTotal);
         map.put("userTotal", userTotal);
         return new ResultVO(StatusCode.OK, "查询成功！", map);

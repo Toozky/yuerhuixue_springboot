@@ -12,9 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class InsServiceImpl implements InsService {
@@ -137,30 +135,36 @@ public class InsServiceImpl implements InsService {
     }
 
     /**
-     * 查询最贵的乐器
+     * 查询最贵的5个乐器
      * @return
      */
     @Override
-    public ResultVO mostExpensive() {
+    public ResultVO mostFiveExpensive() {
         List<Ins> insList = insMapper.selectAll();
 
-        //记录金额最高的金额以及对应乐器id
-        BigDecimal insPrice = new BigDecimal(0);
-        String insName = null;
+        //list存储
+        List<HashMap> total = new ArrayList<>();
 
-        //map存储
-        HashMap<Object, Object> map = new HashMap<>();
-
-        for (Ins ins : insList) {
-            if (ins.getInsPrice().compareTo(insPrice) > 0){
-                insPrice = ins.getInsPrice();
-                insName = ins.getInsName();
+        //冒泡排序
+        for (int i = 0; i < insList.size()-1; i++){
+            for (int j = 0; j < insList.size()-1-i ; j++){
+                if (insList.get(j).getInsPrice().compareTo(insList.get(j+1).getInsPrice()) < 0){
+                    Ins insTemp;
+                    insTemp = insList.get(j+1);
+                    insList.set(j+1, insList.get(j));
+                    insList.set(j, insTemp);
+                }
             }
         }
 
-        map.put("insName", insName);
-        map.put("insPrice", insPrice);
-        return new ResultVO(StatusCode.OK, "查询完成！", map);
+        //获取价格排序前五乐器名以及价格
+        for (int index = 0; index < 5; index++){
+            HashMap<String, BigDecimal> map = new HashMap<>();
+            map.put(insList.get(index).getInsName(), insList.get(index).getInsPrice());
+            total.add(index, map);
+        }
+
+        return new ResultVO(StatusCode.OK, "查询完成！", total);
 
     }
 

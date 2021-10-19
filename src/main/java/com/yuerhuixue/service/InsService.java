@@ -29,7 +29,7 @@ public interface InsService {
     //前五条乐器
     ResultVO insListFive();
 
-    //查询最贵的乐器
-    ResultVO mostExpensive();
+    //查询最贵的5个乐器
+    ResultVO mostFiveExpensive();
 
 }

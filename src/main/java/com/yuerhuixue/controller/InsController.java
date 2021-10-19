@@ -84,10 +84,10 @@ public class InsController {
         return insService.findInsVOById(insId);
     }
 
-    @ApiOperation("查询最贵的乐器接口")
-    @GetMapping("/mostExpensive")
-    public ResultVO mostExpensive(){
-        return insService.mostExpensive();
+    @ApiOperation("查询最贵的5个乐器接口")
+    @GetMapping("/mostFiveExpensive")
+    public ResultVO mostFiveExpensive(){
+        return insService.mostFiveExpensive();
     }
     
 }

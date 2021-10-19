@@ -283,7 +283,7 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public ResultVO userGenderTotal() {
 
-        HashMap<Object, Object> map = new HashMap<>();
+        HashMap<String, Integer> map = new HashMap<>();
         int maleSize = 0;
         int femaleSize = 0;
         int nullSize = 0;

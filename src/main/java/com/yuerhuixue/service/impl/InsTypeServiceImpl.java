@@ -1,6 +1,5 @@
 package com.yuerhuixue.service.impl;
 
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.yuerhuixue.dao.InsMapper;
@@ -15,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -171,14 +171,17 @@ public class InsTypeServiceImpl implements InsTypeService {
     public ResultVO insTotalByType() {
         List<InsTypeVO> insTypeVOList = insTypeMapper.insTypeVOList();
 
-        //map存储
-        HashMap<Object, Object> map = new HashMap<>();
-
+        //list存储
+        int index = 0;
+        List<HashMap> total = new ArrayList<>();
         for (InsTypeVO insTypeVO : insTypeVOList) {
-            map.put(insTypeVO.getTypeName(), insTypeVO.getInsList().size());
-        }
 
-        return new ResultVO(StatusCode.OK, "查询完成！", map);
+            HashMap<String, Integer> map = new HashMap<>();
+            map.put(insTypeVO.getTypeName(), insTypeVO.getInsList().size());
+            total.add(index++, map);
+
+        }
+        return new ResultVO(StatusCode.OK, "查询完成！", total);
 
     }
 }
