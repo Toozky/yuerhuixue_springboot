@@ -178,8 +178,8 @@ public class InsTypeServiceImpl implements InsTypeService {
         for (InsTypeVO insTypeVO : insTypeVOList) {
 
             HashMap<String, Object> an = new HashMap<>();
+            an.put("value", insTypeVO.getInsList().size());
             an.put("name", insTypeVO.getTypeName());
-            an.put("count", insTypeVO.getInsList().size());
 
             total.add(index++, an);
         }
