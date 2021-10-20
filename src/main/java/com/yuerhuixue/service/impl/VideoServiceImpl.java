@@ -60,6 +60,7 @@ public class VideoServiceImpl implements VideoService {
     public ResultVO modifyVideo(Video video) {
 
         //更新修改时间
+        video.setCreateTime(null);
         video.setUpdateTime(new Date());
 
         //是否修改成功

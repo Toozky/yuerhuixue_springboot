@@ -111,6 +111,7 @@ public class AdminsServiceImpl implements AdminsService {
     public ResultVO adminModify(Admins admin) {
 
         //设置修改时间
+        admin.setCreateTime(null);
         admin.setUpdateTime(new Date());
 
         //不修改密码

@@ -11,7 +11,6 @@ import com.yuerhuixue.vo.StatusCode;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import javafx.scene.media.MediaPlayer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
@@ -119,6 +118,7 @@ public class UsersServiceImpl implements UsersService {
     public ResultVO userModify(Users user) {
 
         //设置修改时间
+        user.setCreateTime(null);
         user.setUpdateTime(new Date());
 
         //不修改密码

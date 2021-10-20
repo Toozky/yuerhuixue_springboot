@@ -55,6 +55,7 @@ public class InsServiceImpl implements InsService {
     public ResultVO modifyIns(Ins ins) {
 
         //更新修改时间
+        ins.setCreateTime(null);
         ins.setUpdateTime(new Date());
 
         //是否修改成功

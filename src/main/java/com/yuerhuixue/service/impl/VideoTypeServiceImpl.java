@@ -58,6 +58,7 @@ public class VideoTypeServiceImpl implements VideoTypeService {
     public ResultVO modifyVideoType(VideoType videoType) {
 
         //更新修改时间
+        videoType.setCreateTime(null);
         videoType.setUpdateTime(new Date());
 
         //是否修改成功

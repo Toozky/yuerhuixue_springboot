@@ -64,6 +64,7 @@ public class InsTypeServiceImpl implements InsTypeService {
     public ResultVO modifyInsType(InsType insType) {
 
         //更新修改时间
+        insType.setCreateTime(null);
         insType.setUpdateTime(new Date());
 
         //是否修改成功

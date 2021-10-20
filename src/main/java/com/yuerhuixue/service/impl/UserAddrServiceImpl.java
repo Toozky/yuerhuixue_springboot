@@ -49,6 +49,7 @@ public class UserAddrServiceImpl implements UserAddrService {
     public ResultVO modifyAddr(UserAddr userAddr) {
 
         //更新修改时间
+        userAddr.setCreateTime(null);
         userAddr.setUpdateTime(new Date());
 
         //是否修改成功
