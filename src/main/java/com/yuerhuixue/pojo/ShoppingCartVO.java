@@ -22,6 +22,4 @@ public class ShoppingCartVO {
     //乐器
     private Ins ins;
 
-
-
 }
