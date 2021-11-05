@@ -6,7 +6,7 @@ import com.yuerhuixue.vo.ResultVO;
 public interface ShoppingCartService {
 
     //购物车列表
-    ResultVO shoppingCartList(Integer userId);
+    ResultVO shoppingCartList(Integer pageNum, Integer pageSize, Integer userId);
 
     //添加购物车乐器
     ResultVO addShoppingCart(ShoppingCart shoppingCart);

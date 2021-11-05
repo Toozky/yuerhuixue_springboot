@@ -1,5 +1,7 @@
 package com.yuerhuixue.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.yuerhuixue.dao.UserAddrMapper;
 import com.yuerhuixue.pojo.UserAddr;
 import com.yuerhuixue.service.UserAddrService;
@@ -86,14 +88,19 @@ public class UserAddrServiceImpl implements UserAddrService {
      * @return 执行结果
      */
     @Override
-    public ResultVO addrListByUserId(Integer userId) {
+    public ResultVO addrListByUserId(Integer pageNum, Integer pageSize, Integer userId) {
+
+        //分页
+        PageHelper.startPage(pageNum, pageSize);
 
         //根据用户id查询
         Example example = new Example(UserAddr.class);
         Example.Criteria criteria = example.createCriteria();
         criteria.andEqualTo("userId", userId);
 
-        List<UserAddr> userAddrs = userAddrMapper.selectByExample(example);
-        return new ResultVO(StatusCode.OK, "查询完成！", userAddrs);
+        List<UserAddr> userAddrList = userAddrMapper.selectByExample(example);
+        PageInfo<UserAddr> userAddrPageInfo = new PageInfo<>(userAddrList);
+
+        return new ResultVO(StatusCode.OK, "查询完成！", userAddrPageInfo);
     }
 }

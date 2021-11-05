@@ -42,11 +42,15 @@ public class UserAddrController {
 
     @ApiOperation("收货地址列表接口")
     @ApiImplicitParams({
-            @ApiImplicitParam(dataType = "int", name = "userId", value = "用户id", required = true)
+        @ApiImplicitParam(dataType = "int", name = "pageNum", value = "页码", required = true),
+        @ApiImplicitParam(dataType = "int", name = "pageSize", value = "当前页码数据条数", required = true),
+        @ApiImplicitParam(dataType = "int", name = "userId", value = "用户id", required = true)
     })
     @GetMapping("/list")
-    public ResultVO addrList(@RequestParam("userId") Integer userId){
-        return userAddrService.addrListByUserId(userId);
+    public ResultVO addrList(@RequestParam("pageNum") Integer pageNum,
+                             @RequestParam("pageSize")Integer pageSize,
+                             @RequestParam("userId") Integer userId){
+        return userAddrService.addrListByUserId(pageNum, pageSize, userId);
     }
 
 }

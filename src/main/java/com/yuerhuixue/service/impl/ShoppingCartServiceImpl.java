@@ -1,5 +1,7 @@
 package com.yuerhuixue.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.yuerhuixue.dao.ShoppingCartMapper;
 import com.yuerhuixue.pojo.ShoppingCart;
 import com.yuerhuixue.pojo.ShoppingCartVO;
@@ -25,11 +27,16 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
      * @return 执行结果
      */
     @Override
-    public ResultVO shoppingCartList(Integer userId) {
+    public ResultVO shoppingCartList(Integer pageNum, Integer pageSize, Integer userId) {
+
+        //分页
+        PageHelper.startPage(pageNum, pageSize);
 
         //查询当前用户购物车
         List<ShoppingCartVO> shoppingCartList = shoppingCartMapper.shoppingCartByUser(userId);
-        return new ResultVO(StatusCode.OK, "查询完成！", shoppingCartList);
+        PageInfo<ShoppingCartVO> shoppingCartPageInfo = new PageInfo<>(shoppingCartList);
+
+        return new ResultVO(StatusCode.OK, "查询完成！", shoppingCartPageInfo);
     }
 
     /**

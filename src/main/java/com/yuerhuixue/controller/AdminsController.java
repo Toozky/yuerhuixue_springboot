@@ -47,7 +47,8 @@ public class AdminsController {
     @ApiOperation("管理员登录接口")
     @ApiImplicitParams({
             @ApiImplicitParam(dataType = "string", name = "name", value = "管理员用户名", required = true),
-            @ApiImplicitParam(dataType = "string", name = "pwd", value = "管理员密码", required = true)
+            @ApiImplicitParam(dataType = "string", name = "pwd", value = "管理员密码", required = true),
+            @ApiImplicitParam(dataType = "string", name = "code", value = "验证码", required = true)
     })
     @GetMapping("/login")
     public ResultVO login(@RequestParam("name") String name,

@@ -70,7 +70,7 @@ public class InsTypeController {
         return insTypeService.insTypeListFive();
     }
 
-    @ApiOperation("查询当前类型下所有乐器")
+    @ApiOperation("查询当前类型下所有乐器接口")
     @ApiImplicitParams({
             @ApiImplicitParam(dataType = "int", name = "insTypeId", value = "乐器类型id", required = true),
             @ApiImplicitParam(dataType = "int", name = "pageNum", value = "页码", required = true),

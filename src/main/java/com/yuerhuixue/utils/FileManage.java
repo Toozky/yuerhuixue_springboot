@@ -52,7 +52,7 @@ public class FileManage {
      * @param fileName 文件名
      * @return 更名后字符串
      */
-    public static String FileRename(String fileName){
+    public static String fileRename(String fileName){
 
         //生成uuid
         String uuid = UUID.randomUUID().toString().replace("-", "");
@@ -79,7 +79,7 @@ public class FileManage {
         if (FileManage.checkImg(imgRealName)){
 
             //是图片，则重命名
-            String imgRename = FileManage.FileRename(imgRealName);
+            String imgRename = FileManage.fileRename(imgRealName);
 
             //完整路径
             File ToImgpath = new File(targetPath + "/" + imgRename);
@@ -111,7 +111,7 @@ public class FileManage {
         if (FileManage.checkVideo(videoRealName)){
 
             //是视频，则重命名
-            String videoRename = FileManage.FileRename(videoRealName);
+            String videoRename = FileManage.fileRename(videoRealName);
 
             //完整路径
             File ToImgpath = new File(targetPath + "/" + videoRename);
