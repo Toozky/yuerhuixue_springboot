@@ -1,6 +1,5 @@
 package com.yuerhuixue.service.impl;
 
-import com.github.pagehelper.PageInfo;
 import com.yuerhuixue.dao.OrderDetailMapper;
 import com.yuerhuixue.dao.OrdersMapper;
 import com.yuerhuixue.pojo.OrderDetail;
