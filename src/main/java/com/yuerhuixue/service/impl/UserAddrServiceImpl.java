@@ -88,7 +88,23 @@ public class UserAddrServiceImpl implements UserAddrService {
      * @return 执行结果
      */
     @Override
-    public ResultVO addrListByUserId(Integer pageNum, Integer pageSize, Integer userId) {
+    public ResultVO addrListByUserId(Integer userId) {
+
+        //根据用户id查询
+        Example example = new Example(UserAddr.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("userId", userId);
+        List<UserAddr> userAddrList = userAddrMapper.selectByExample(example);
+        return new ResultVO(StatusCode.OK, "查询完成！", userAddrList);
+    }
+
+    /**
+     * 查询当前用户所有地址信息
+     * @param userId 用户id
+     * @return 执行结果
+     */
+    @Override
+    public ResultVO addrPageListByUserId(Integer pageNum, Integer pageSize, Integer userId) {
 
         //分页
         PageHelper.startPage(pageNum, pageSize);

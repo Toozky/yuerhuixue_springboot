@@ -15,6 +15,9 @@ public interface UserAddrService {
     ResultVO deleteAddr(Integer userAddrId);
 
     //查询用户所有地址
-    ResultVO addrListByUserId(Integer pageNum, Integer pageSize, Integer userId);
+    ResultVO addrListByUserId(Integer userId);
+
+    //查询用户所有地址分页
+    ResultVO addrPageListByUserId(Integer pageNum, Integer pageSize, Integer userId);
 
 }
