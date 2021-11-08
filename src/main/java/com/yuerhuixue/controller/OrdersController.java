@@ -1,6 +1,10 @@
 package com.yuerhuixue.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.fasterxml.jackson.databind.JavaType;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yuerhuixue.pojo.OrderDetail;
 import com.yuerhuixue.pojo.Orders;
 import com.yuerhuixue.service.OrdersService;
@@ -46,9 +50,9 @@ public class OrdersController {
 
     @ApiOperation("添加订单细节接口")
     @PostMapping("/addOrderDetail")
-    public ResultVO addOrderDetail(String orderDetailListToString){
+    public ResultVO addOrderDetail(String orderDetailListToString) {
 
-        List<OrderDetail> orderDetailList = (ArrayList<OrderDetail>)JSONObject.parseObject(orderDetailListToString, List.class);
+        List<OrderDetail> orderDetailList = JSONArray.parseArray(orderDetailListToString, OrderDetail.class);
 
         try {
             for (OrderDetail orderDetail : orderDetailList) {
@@ -56,6 +60,7 @@ public class OrdersController {
             }
             return new ResultVO(StatusCode.OK, "添加成功！", null);
         }catch (Exception e){
+            System.out.println(e);
             return new ResultVO(StatusCode.NO, "添加失败！", null);
         }
     }
