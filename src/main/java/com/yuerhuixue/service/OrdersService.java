@@ -7,7 +7,7 @@ import com.yuerhuixue.vo.ResultVO;
 public interface OrdersService {
 
     //查询当前用户的所有订单
-    ResultVO findOrderVOByUserId(Integer userId);
+    ResultVO findOrderVOByUserId(Integer pageNum, Integer pageSize, Integer userId);
 
     //添加订单
     ResultVO addOrder(Orders order);

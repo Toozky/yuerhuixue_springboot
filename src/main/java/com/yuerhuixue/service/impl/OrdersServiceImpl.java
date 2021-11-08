@@ -1,5 +1,7 @@
 package com.yuerhuixue.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.yuerhuixue.dao.OrderDetailMapper;
 import com.yuerhuixue.dao.OrdersMapper;
 import com.yuerhuixue.pojo.OrderDetail;
@@ -29,9 +31,15 @@ public class OrdersServiceImpl implements OrdersService {
      * @return 执行结果
      */
     @Override
-    public ResultVO findOrderVOByUserId(Integer userId) {
-        List<OrdersVO> orderVOs = ordersMapper.findOrderVOByUserId(userId);
-        return new ResultVO(StatusCode.OK,"查询完成！", orderVOs);
+    public ResultVO findOrderVOByUserId(Integer pageNum, Integer pageSize, Integer userId) {
+
+        //分页
+        PageHelper.startPage(pageNum, pageSize);
+
+        //查询订单
+        List<OrdersVO> orderVOList = ordersMapper.findOrderVOByUserId(userId);
+        PageInfo<OrdersVO> ordersVOPageInfo = new PageInfo<>(orderVOList);
+        return new ResultVO(StatusCode.OK,"查询完成！", ordersVOPageInfo);
     }
 
     @Override

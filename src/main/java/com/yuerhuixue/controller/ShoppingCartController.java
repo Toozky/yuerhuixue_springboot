@@ -26,7 +26,7 @@ public class ShoppingCartController {
             @ApiImplicitParam(dataType = "int", name = "userId", value = "用户id", required = true)
     })
     @GetMapping("/list")
-    public ResultVO shoppingCartList(@RequestParam("pageNum") Integer pageNum,
+    public ResultVO list(@RequestParam("pageNum") Integer pageNum,
                                      @RequestParam("pageSize")Integer pageSize,
                                      @RequestParam("userId") Integer userId){
         return shoppingCartService.shoppingCartList(pageNum, pageSize, userId);
@@ -34,7 +34,7 @@ public class ShoppingCartController {
 
     @ApiOperation("添加购物车接口")
     @PostMapping("/add")
-    public ResultVO addShoppingCart(@RequestBody ShoppingCart shoppingCart){
+    public ResultVO add(@RequestBody ShoppingCart shoppingCart){
         return shoppingCartService.addShoppingCart(shoppingCart);
     }
 
@@ -44,8 +44,8 @@ public class ShoppingCartController {
             @ApiImplicitParam(dataType = "int", name = "cartNumber", value = "乐器数量", required = true)
     })
     @PutMapping("modify")
-    public ResultVO modifyShoppingCart(@RequestParam("cartId") Integer cartId,
-                                       @RequestParam("cartNumber") Integer cartNumber){
+    public ResultVO modify(@RequestParam("cartId") Integer cartId,
+                           @RequestParam("cartNumber") Integer cartNumber){
         return shoppingCartService.modifyShoppingCart(cartId, cartNumber);
     }
 
@@ -54,7 +54,7 @@ public class ShoppingCartController {
             @ApiImplicitParam(dataType = "int", name = "cartId", value = "购物车id", required = true)
     })
     @DeleteMapping("delete")
-    public ResultVO deleteShoppingCart(@RequestParam("cartId") Integer cartId){
+    public ResultVO delete(@RequestParam("cartId") Integer cartId){
         return shoppingCartService.deleteShoppingCart(cartId);
     }
 

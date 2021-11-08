@@ -6,6 +6,8 @@ import com.yuerhuixue.service.OrdersService;
 import com.yuerhuixue.vo.ResultVO;
 import com.yuerhuixue.vo.StatusCode;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +22,19 @@ public class OrdersController {
 
     @Autowired
     private OrdersService ordersService;
+
+    @ApiOperation("购物车列表接口")
+    @ApiImplicitParams({
+            @ApiImplicitParam(dataType = "int", name = "pageNum", value = "页码", required = true),
+            @ApiImplicitParam(dataType = "int", name = "pageSize", value = "当前页码数据条数", required = true),
+            @ApiImplicitParam(dataType = "int", name = "userId", value = "用户id", required = true)
+    })
+    @GetMapping("/list")
+    public ResultVO list(@RequestParam("pageNum") Integer pageNum,
+                         @RequestParam("pageSize")Integer pageSize,
+                         @RequestParam("userId") Integer userId){
+        return ordersService.findOrderVOByUserId(pageNum, pageSize, userId);
+    }
 
     @ApiOperation("添加订单接口")
     @PostMapping("/addOrder")
