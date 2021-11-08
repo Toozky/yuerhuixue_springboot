@@ -1,5 +1,6 @@
 package com.yuerhuixue.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.yuerhuixue.pojo.OrderDetail;
 import com.yuerhuixue.pojo.Orders;
 import com.yuerhuixue.service.OrdersService;
@@ -12,6 +13,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -44,7 +46,10 @@ public class OrdersController {
 
     @ApiOperation("添加订单细节接口")
     @PostMapping("/addOrderDetail")
-    public ResultVO addOrderDetail(List<OrderDetail> orderDetailList){
+    public ResultVO addOrderDetail(String orderDetailListToString){
+
+        List<OrderDetail> orderDetailList = (ArrayList<OrderDetail>)JSONObject.parseObject(orderDetailListToString, List.class);
+
         try {
             for (OrderDetail orderDetail : orderDetailList) {
                 ordersService.addOrderDetail(orderDetail);
