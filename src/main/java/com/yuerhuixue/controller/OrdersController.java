@@ -23,7 +23,7 @@ public class OrdersController {
     @Autowired
     private OrdersService ordersService;
 
-    @ApiOperation("购物车列表接口")
+    @ApiOperation("订单列表接口")
     @ApiImplicitParams({
             @ApiImplicitParam(dataType = "int", name = "pageNum", value = "页码", required = true),
             @ApiImplicitParam(dataType = "int", name = "pageSize", value = "当前页码数据条数", required = true),
