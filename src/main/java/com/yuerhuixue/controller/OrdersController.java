@@ -76,7 +76,7 @@ public class OrdersController {
                 ins.setInsId(Integer.parseInt(orderDetail.getInsId()));
 
                 //修改
-                if (insStockBefore > buyNumber){
+                if (insStockBefore >= buyNumber){
                     Integer insStock = insStockBefore - buyNumber;
                     ins.setInsStock(insStock);
                     insService.modifyIns(ins);
