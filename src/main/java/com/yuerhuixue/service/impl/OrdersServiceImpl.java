@@ -4,7 +4,6 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.yuerhuixue.dao.OrderDetailMapper;
 import com.yuerhuixue.dao.OrdersMapper;
-import com.yuerhuixue.pojo.Admins;
 import com.yuerhuixue.pojo.OrderDetail;
 import com.yuerhuixue.pojo.Orders;
 import com.yuerhuixue.pojo.OrdersVO;
@@ -70,9 +69,9 @@ public class OrdersServiceImpl implements OrdersService {
     public ResultVO deleteOrder(Integer id) {
 
         //查询当前id订单细节
-        Example example = new Example(Admins.class);
+        Example example = new Example(OrderDetail.class);
         Example.Criteria criteria = example.createCriteria();
-        criteria.andEqualTo("order_id", id);
+        criteria.andEqualTo("orderId", id);
         List<OrderDetail> orderDetailList = orderDetailMapper.selectByExample(example);
 
         try {
