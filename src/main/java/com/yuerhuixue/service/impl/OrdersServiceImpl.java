@@ -48,9 +48,9 @@ public class OrdersServiceImpl implements OrdersService {
         order.setUpdateTime(new Date());
         int insert = ordersMapper.insertUseGeneratedKeys(order);
         if (insert > 0){
-            return new ResultVO(StatusCode.OK,"添加完成！", order.getOrderId());
+            return new ResultVO(StatusCode.OK,"购买完成！", order.getOrderId());
         }else {
-            return new ResultVO(StatusCode.NO,"添加失败！", null);
+            return new ResultVO(StatusCode.NO,"购买失败！", null);
         }
     }
 
@@ -58,9 +58,9 @@ public class OrdersServiceImpl implements OrdersService {
     public ResultVO addOrderDetail(OrderDetail orderDetail) {
         int insert = orderDetailMapper.insertUseGeneratedKeys(orderDetail);
         if (insert > 0){
-            return new ResultVO(StatusCode.OK,"添加完成！", null);
+            return new ResultVO(StatusCode.OK,"购买完成！", null);
         }else {
-            return new ResultVO(StatusCode.NO,"添加失败！", null);
+            return new ResultVO(StatusCode.NO,"购买失败！", null);
         }
     }
 }
