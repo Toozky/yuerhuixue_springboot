@@ -79,6 +79,7 @@ public class OrdersController {
                 if (insStockBefore > buyNumber){
                     Integer insStock = insStockBefore - buyNumber;
                     ins.setInsStock(insStock);
+                    insService.modifyIns(ins);
                 }else {
                     ordersService.deleteOrder(orderDetail.getOrderId());
                     return new ResultVO(StatusCode.NO, orderDetail.getInsName()+"库存不足！", null);
