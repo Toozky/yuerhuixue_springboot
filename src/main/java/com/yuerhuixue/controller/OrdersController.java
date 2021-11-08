@@ -44,7 +44,7 @@ public class OrdersController {
 
     @ApiOperation("添加订单细节接口")
     @PostMapping("/addOrderDetail")
-    public ResultVO addOrderDetail(@RequestBody List<OrderDetail> orderDetailList){
+    public ResultVO addOrderDetail(List<OrderDetail> orderDetailList){
         try {
             for (OrderDetail orderDetail : orderDetailList) {
                 ordersService.addOrderDetail(orderDetail);
