@@ -15,4 +15,7 @@ public interface OrdersService {
     //添加订单细节
     ResultVO addOrderDetail(OrderDetail orderDetail);
 
+    //删除订单
+    ResultVO deleteOrder(Integer id);
+
 }

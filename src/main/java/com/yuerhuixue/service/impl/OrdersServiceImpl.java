@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.yuerhuixue.dao.OrderDetailMapper;
 import com.yuerhuixue.dao.OrdersMapper;
+import com.yuerhuixue.pojo.Admins;
 import com.yuerhuixue.pojo.OrderDetail;
 import com.yuerhuixue.pojo.Orders;
 import com.yuerhuixue.pojo.OrdersVO;
@@ -12,6 +13,7 @@ import com.yuerhuixue.vo.ResultVO;
 import com.yuerhuixue.vo.StatusCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tk.mybatis.mapper.entity.Example;
 
 import java.util.Date;
 import java.util.List;
@@ -61,6 +63,33 @@ public class OrdersServiceImpl implements OrdersService {
             return new ResultVO(StatusCode.OK,"购买完成！", null);
         }else {
             return new ResultVO(StatusCode.NO,"购买失败！", null);
+        }
+    }
+
+    @Override
+    public ResultVO deleteOrder(Integer id) {
+
+        //查询当前id订单细节
+        Example example = new Example(Admins.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("order_id", id);
+        List<OrderDetail> orderDetailList = orderDetailMapper.selectByExample(example);
+
+        try {
+            if (!(orderDetailList.size() ==0)){
+                for (OrderDetail orderDetail : orderDetailList) {
+                    orderDetailMapper.delete(orderDetail);
+                }
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+
+        int delete = ordersMapper.deleteByPrimaryKey(id);
+        if (delete > 0){
+            return new ResultVO(StatusCode.OK,"删除成功！", null);
+        }else {
+            return new ResultVO(StatusCode.NO,"删除异常！", null);
         }
     }
 }

@@ -5,8 +5,10 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.yuerhuixue.pojo.Ins;
 import com.yuerhuixue.pojo.OrderDetail;
 import com.yuerhuixue.pojo.Orders;
+import com.yuerhuixue.service.InsService;
 import com.yuerhuixue.service.OrdersService;
 import com.yuerhuixue.vo.ResultVO;
 import com.yuerhuixue.vo.StatusCode;
@@ -28,6 +30,9 @@ public class OrdersController {
 
     @Autowired
     private OrdersService ordersService;
+
+    @Autowired
+    private InsService insService;
 
     @ApiOperation("订单列表接口")
     @ApiImplicitParams({
@@ -57,10 +62,33 @@ public class OrdersController {
         try {
             for (OrderDetail orderDetail : orderDetailList) {
                 ordersService.addOrderDetail(orderDetail);
+
+                //获取乐器原始库存
+                ResultVO resultVO = insService.findInsById(Integer.parseInt(orderDetail.getInsId()));
+                Ins insById = (Ins)resultVO.getData();
+                Integer insStockBefore = insById.getInsStock();
+
+                //获取已购买数量
+                Integer buyNumber = orderDetail.getBuyNumber();
+
+                //待修改的数据对象
+                Ins ins = new Ins();
+                ins.setInsId(Integer.parseInt(orderDetail.getInsId()));
+
+                //修改
+                if (insStockBefore > buyNumber){
+                    Integer insStock = insStockBefore - buyNumber;
+                    ins.setInsStock(insStock);
+                }else {
+                    ordersService.deleteOrder(orderDetail.getOrderId());
+                    return new ResultVO(StatusCode.NO, orderDetail.getInsName()+"库存不足！", null);
+                }
+
             }
             return new ResultVO(StatusCode.OK, "添加成功！", null);
         }catch (Exception e){
             System.out.println(e);
+            ordersService.deleteOrder(orderDetailList.get(0).getOrderId());
             return new ResultVO(StatusCode.NO, "添加失败！", null);
         }
     }
